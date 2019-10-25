@@ -2,7 +2,7 @@ package security;
 
 import java.io.Serializable;
 
-// Nota, se esta violando el patron Single Responsability.
+// Nota, se esta violando el patron Single Responsibility.
 public class ControlCenter implements Serializable
 {
 	private static final long serialVersionUID = 1L;

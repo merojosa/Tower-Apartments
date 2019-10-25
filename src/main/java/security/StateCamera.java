@@ -6,11 +6,10 @@ public enum StateCamera
 	{
 
 		@Override
-		public boolean setDirection(DirectionCamera direction) 
+		public void setDirection(DirectionCamera direction) 
 		{
 			this.direction = direction;
 			System.out.println("Se cambió la dirección a " + this.direction);
-			return true;
 		}
 		
 	},
@@ -18,10 +17,9 @@ public enum StateCamera
 	{
 
 		@Override
-		public boolean setDirection(DirectionCamera direction)
+		public void setDirection(DirectionCamera direction)
 		{
 			System.out.println("No se puede cambiar la dirección estando la cámara apagada.");
-			return false;
 		}
 		
 	};
@@ -39,5 +37,5 @@ public enum StateCamera
 		return direction;
 	}
 	
-	public abstract boolean setDirection(DirectionCamera direction);
+	public abstract void setDirection(DirectionCamera direction);
 }
