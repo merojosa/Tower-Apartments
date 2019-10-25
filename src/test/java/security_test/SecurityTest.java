@@ -1,10 +1,16 @@
-package security;
+package security_test;
 
 import java.util.HashSet;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import security.AccessProxy;
+import security.InternetImplementation;
+import security.InternetService;
+import security.Proxy;
+import security.WebsitesProxy;
 
 public class SecurityTest 
 {
