@@ -19,7 +19,7 @@ public class AccessProxy extends Proxy
 	@Override
 	protected boolean validateAccess(String url) 
 	{
-		if(accessCounter <= ACCESS_ALLOWED)
+		if(accessCounter < ACCESS_ALLOWED)
 		{
 			++accessCounter;
 			return true;
