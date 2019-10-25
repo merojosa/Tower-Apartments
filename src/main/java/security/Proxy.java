@@ -1,6 +1,6 @@
 package security;
 
-public interface Proxy
+public abstract class Proxy implements InternetService
 {
-	public boolean validateAccess(String url);
+	protected abstract boolean validateAccess(String url);	
 }

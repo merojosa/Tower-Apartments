@@ -3,7 +3,7 @@ package security;
 import java.util.HashSet;
 import java.util.List;
 
-public class WebsitesProxy implements Proxy
+public class WebsitesProxy extends Proxy
 {
 	private HashSet<String> forbiddenWebsites;
 	
@@ -16,8 +16,9 @@ public class WebsitesProxy implements Proxy
 		this.proxy = proxy;
 	}
 	
-
-	public boolean validateAccess(String url) 
+	
+	@Override
+	protected boolean validateAccess(String url) 
 	{
 		if(forbiddenWebsites.contains(url) == true)
 		{
@@ -25,8 +26,13 @@ public class WebsitesProxy implements Proxy
 		}
 		else
 		{
-			return proxy.validateAccess(url);
+			return ((AccessProxy) proxy).accessWebsite(url);
 		}
+	}
+	
+	public boolean accessWebsite(String url) 
+	{
+		return validateAccess(url);
 	}
 	
 
