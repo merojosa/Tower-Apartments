@@ -12,7 +12,7 @@ import security.InternetService;
 import security.Proxy;
 import security.WebsitesProxy;
 
-public class SecurityTest 
+public class AccessTest 
 {
 	
 	private InternetService service;
