@@ -1,8 +1,5 @@
 package security_test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +14,7 @@ public class CameraControlTest {
 	@Test
 	public void changeDirectionCameraOnTest() 
 	{
-		Camera camera = new CameraImplementation(StateCamera.ON);
+		Camera camera = new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT);
 		camera.setDirection(DirectionCamera.RIGHT);
 		Assert.assertSame(DirectionCamera.RIGHT, ((CameraImplementation) camera).getState().getDirection());
 	}
@@ -33,22 +30,20 @@ public class CameraControlTest {
 	@Test
 	public void changeDirectionCompositeTest()
 	{
-		List<Camera> cameras = new ArrayList<Camera>();
+		Camera composite_test = new CompositeCamera.Builder()
+							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
+							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
+							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.RIGHT))
+							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
+							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
+							.build();
 		
-		cameras.add(new CameraImplementation(StateCamera.ON));
-		cameras.add(new CameraImplementation(StateCamera.ON));
-		cameras.add(new CameraImplementation(StateCamera.ON));
-		cameras.add(new CameraImplementation(StateCamera.ON));
-		cameras.get(0).setDirection(DirectionCamera.LEFT);
+		composite_test.setDirection(DirectionCamera.RIGHT);
 		
-		Camera composite = new CompositeCamera(cameras);
-		composite.setDirection(DirectionCamera.RIGHT);
-		
-		for(Camera camera : cameras)
+		for(Camera camera : ((CompositeCamera) composite_test).getCameras())
 		{
 			Assert.assertSame(((CameraImplementation) camera).getState().getDirection(), DirectionCamera.RIGHT);
 		}
-		
 	}
 
 }
