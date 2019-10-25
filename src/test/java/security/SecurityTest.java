@@ -26,11 +26,13 @@ public class SecurityTest
 		((WebsitesProxy) websitesProxy).setForbiddenWebsites(forbiddenWebsites);
 	}
 	
+	
 	@Test
 	public void allowAccessProxyTest() 
 	{
 		Assert.assertTrue(accessProxy.accessWebsite("facebook.com"));
 	}
+	
 
 	@Test
 	public void allowWebsitesProxyTest() 
@@ -38,11 +40,6 @@ public class SecurityTest
 		Assert.assertTrue(websitesProxy.accessWebsite("facebook.com"));
 	}
 	
-	@Test
-	public void denyWebsitesProxyTest()
-	{
-		Assert.assertFalse(websitesProxy.accessWebsite("xxx.com"));
-	}
 	
 	@Test
 	public void denyAccessProxyTest()
@@ -59,8 +56,12 @@ public class SecurityTest
 		Assert.assertTrue(accessProxy.accessWebsite("repretel.com"));
 		// Denied.
 		Assert.assertFalse(accessProxy.accessWebsite("facebook.com"));
-
 	}
 	
 	
+	@Test
+	public void denyWebsitesProxyTest()
+	{
+		Assert.assertFalse(websitesProxy.accessWebsite("xxx.com"));
+	}
 }
