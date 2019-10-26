@@ -55,8 +55,7 @@ public class CompositeCamera implements Camera
 		
 		public Builder addCamera(Camera camera)
 		{
-			List<Camera> list = composite.getCameras();
-			list.add(camera);
+			composite.getCameras().add(camera);
 			return this;
 		}
 		

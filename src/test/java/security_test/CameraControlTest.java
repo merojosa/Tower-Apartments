@@ -9,7 +9,8 @@ import security.CompositeCamera;
 import security.DirectionCamera;
 import security.StateCamera;
 
-public class CameraControlTest {
+public class CameraControlTest 
+{
 
 	@Test
 	public void changeDirectionCameraOnTest() 
@@ -19,6 +20,7 @@ public class CameraControlTest {
 		Assert.assertSame(DirectionCamera.RIGHT, ((CameraImplementation) camera).getState().getDirection());
 	}
 	
+	
 	@Test
 	public void changeDirectionCameraOffTest() 
 	{
@@ -27,16 +29,17 @@ public class CameraControlTest {
 		Assert.assertNotSame(DirectionCamera.LEFT, ((CameraImplementation) camera).getState().getDirection());
 	}
 	
+	
 	@Test
 	public void changeDirectionCompositeTest()
 	{
 		Camera composite_test = new CompositeCamera.Builder()
-							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
-							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
-							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.RIGHT))
-							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
-							.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
-							.build();
+								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
+								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
+								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.RIGHT))
+								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
+								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
+								.build();
 		
 		composite_test.setDirection(DirectionCamera.RIGHT);
 		

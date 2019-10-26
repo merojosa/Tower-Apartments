@@ -9,6 +9,7 @@ public class CameraImplementation implements Camera
 		this.state = state;
 	}
 	
+	
 	public CameraImplementation(StateCamera state, DirectionCamera direction)
 	{
 		this.state = state;
