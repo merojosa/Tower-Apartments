@@ -6,7 +6,7 @@ import org.junit.Test;
 import security.InternetImplementation;
 import security.InternetService;
 
-public class AccessTest 
+public class ProxyTest 
 {
 	@Test
 	public void testValidUrl()
