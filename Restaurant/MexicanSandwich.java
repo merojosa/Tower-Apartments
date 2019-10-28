@@ -10,7 +10,7 @@ public class MexicanSandwich extends Sandwich implements SandwichInterface{
 		return price;
 	}
 	
-	public String descripcion() {
+	public String description() {
 		return "Mexican Sandwich";
 	}
 }

@@ -11,7 +11,7 @@ public class ItalianSandwich extends Sandwich implements SandwichInterface {
 		return price;
 	}
 	
-	public String descripcion() {
+	public String description() {
 		return "Italian Sandwich";
 	}
 }

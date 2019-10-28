@@ -7,11 +7,11 @@ public class WithCheese implements SandwichInterface{
 	}
 	
 
-	public String descripcion() {
-		return sandwich.descripcion() + "with cheese";
+	public String description() {
+		return sandwich.description() + "with cheese";
 	}
 	
 	public int price() {
-		return sandwich.price() + 0.7;
+		return sandwich.price() + 0.75;
 	}
 }
