@@ -1,0 +1,16 @@
+
+public class MexicanSandwich extends Sandwich implements SandwichInterface{
+	//final static int PRICE = 5; 
+	public MexicanSandwich() {
+		this.bread = Sandwich.Bread.MEXICAN_BREAD;
+		this.mainIng = Sandwich.MainIngredient.CARNITAS;
+		this.price = 5; 
+	}
+	public int price() {
+		return price;
+	}
+	
+	public String descripcion() {
+		return "Mexican Sandwich";
+	}
+}
