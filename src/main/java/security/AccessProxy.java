@@ -14,14 +14,25 @@ public class AccessProxy implements InternetService
 	}
 
 
-	public boolean accessWebsite(String url) 
+	public InternetService accessWebsite(String url) 
 	{
+		InternetService service = new InternetImplementation();
+		
 		if(accessCounter < ACCESS_ALLOWED)
 		{
 			++accessCounter;
-			return true;
+		}
+		else
+		{
+			service = new InternetNull();
 		}
 
+		return service;
+	}
+
+
+	public boolean isNull() 
+	{
 		return false;
 	}
 }

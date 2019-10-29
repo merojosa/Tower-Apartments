@@ -7,32 +7,38 @@ public class WebsitesProxy implements InternetService
 	private HashSet<String> blockedWebsites;
 	
 	// Wrapper
-	private InternetService proxy;
+	private InternetService proxyWrapper;
 	
 	
 	public WebsitesProxy(InternetService proxy)
 	{
-		this.proxy = proxy;
+		this.proxyWrapper = proxy;
 		this.blockedWebsites = new HashSet<String>();
 		loadBlockedWebsites();
 	}
 	
 	
-	public boolean accessWebsite(String url) 
+	public InternetService accessWebsite(String url) 
 	{
-		if(proxy.accessWebsite(url) == false)
+		InternetService service = proxyWrapper.accessWebsite(url);
+		if(service.isNull() == false && blockedWebsites.contains(url) == true)
 		{
-			return false;
+			service = new InternetNull();
 		}
 		
-		// False if the url exists in forbiddenWebsites.
-		return !blockedWebsites.contains(url);
+		return service;
 	}
 	
 	// Este metodo variara cuando se configure realmente cuales seran los sitios bloqueados.
 	private void loadBlockedWebsites()
 	{
 		blockedWebsites.add("xxx.com");
+	}
+
+
+	public boolean isNull() 
+	{
+		return false;
 	}
 
 

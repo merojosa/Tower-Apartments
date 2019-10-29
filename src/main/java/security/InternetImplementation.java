@@ -2,16 +2,15 @@ package security;
 
 public class InternetImplementation implements InternetService
 {
-	private InternetService proxy;
-	
-	public InternetImplementation()
-	{		
-		proxy = new WebsitesProxy(new AccessProxy());
+
+	public InternetService accessWebsite(String url)
+	{
+		return this;
 	}
 
-	public boolean accessWebsite(String url)
+	public boolean isNull() 
 	{
-		return proxy.accessWebsite(url);
+		return false;
 	}
 
 }
