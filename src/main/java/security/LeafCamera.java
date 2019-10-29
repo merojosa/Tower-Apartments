@@ -1,20 +1,24 @@
 package security;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeafCamera implements ComponentCamera 
 {
 	private Camera camera;
 	
-	public LeafCamera(Camera state)
+	public LeafCamera(Camera camera)
 	{
-		this.camera = state;
+		this.camera = camera;
 	}
 	
 	
-	public LeafCamera(Camera state, DirectionCamera direction)
+	public LeafCamera(Camera camera, DirectionCamera direction)
 	{
-		this.camera = state;
+		this.camera = camera;
 		this.camera.setDirection(direction);
 	}
+	
 	
 	
 	public void setState(Camera state) 
@@ -28,12 +32,22 @@ public class LeafCamera implements ComponentCamera
 	
 	public void setDirection(DirectionCamera direction) 
 	{
-		this.camera.setDirection(direction);
+		camera.setDirection(direction);
 	}
-	
-	
-	public Camera getState()
+
+
+	public List<ComponentCamera> getSetCamera() 
 	{
-		return camera;
+		List<ComponentCamera> list = new ArrayList<ComponentCamera>();
+		list.add(this);
+		return list;
 	}
+	
+	public PropertiesCamera getProperties()
+	{
+		// Doesn't make sense ask for properties
+		return camera.getProperties();
+	}
+	
+
 }

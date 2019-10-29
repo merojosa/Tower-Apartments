@@ -17,7 +17,7 @@ public class CameraControlTest
 	{
 		ComponentCamera camera = new LeafCamera(Camera.ON, DirectionCamera.LEFT);
 		camera.setDirection(DirectionCamera.RIGHT);
-		Assert.assertSame(DirectionCamera.RIGHT, ((LeafCamera) camera).getState().getDirection());
+		Assert.assertSame(DirectionCamera.RIGHT, camera.getProperties().getDirection());
 	}
 	
 	
@@ -26,7 +26,7 @@ public class CameraControlTest
 	{
 		ComponentCamera camera = new LeafCamera(Camera.OFF);
 		camera.setDirection(DirectionCamera.LEFT);
-		Assert.assertNotSame(DirectionCamera.LEFT, ((LeafCamera) camera).getState().getDirection());
+		Assert.assertNotSame(DirectionCamera.LEFT, camera.getProperties().getDirection());
 	}
 	
 	
@@ -43,9 +43,9 @@ public class CameraControlTest
 		
 		composite_test.setDirection(DirectionCamera.RIGHT);
 		
-		for(ComponentCamera camera : ((CompositeCamera) composite_test).getCameras())
+		for(ComponentCamera camera : composite_test.getSetCamera())
 		{
-			Assert.assertSame(((LeafCamera) camera).getState().getDirection(), DirectionCamera.RIGHT);
+			Assert.assertSame(camera.getProperties().getDirection(), DirectionCamera.RIGHT);
 		}
 	}
 	

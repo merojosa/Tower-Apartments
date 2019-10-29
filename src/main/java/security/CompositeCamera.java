@@ -13,7 +13,6 @@ public class CompositeCamera implements ComponentCamera
 	}
 
 	
-	// REVISAR SI CON EL CAMBIO SE CAMBIAN LAS PROPIEDADES.
 	public void setState(Camera state) 
 	{
 		for(ComponentCamera camera : cameras)
@@ -32,15 +31,15 @@ public class CompositeCamera implements ComponentCamera
 	}
 	
 	
-	public List<ComponentCamera> getCameras()
+	public List<ComponentCamera> getSetCamera()
 	{
 		return cameras;
 	}
 	
-	
-	public void setCameras(List<ComponentCamera> cameras)
+	public PropertiesCamera getProperties()
 	{
-		this.cameras = cameras;
+		// Doesn't make sense ask for properties
+		return null;
 	}
 	
 	
@@ -56,7 +55,7 @@ public class CompositeCamera implements ComponentCamera
 		
 		public Builder addCamera(ComponentCamera camera)
 		{
-			composite.getCameras().add(camera);
+			composite.getSetCamera().add(camera);
 			return this;
 		}
 		
