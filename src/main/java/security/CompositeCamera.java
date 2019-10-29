@@ -13,7 +13,8 @@ public class CompositeCamera implements ComponentCamera
 	}
 
 	
-	public void setState(StateCamera state) 
+	// REVISAR SI CON EL CAMBIO SE CAMBIAN LAS PROPIEDADES.
+	public void setState(Camera state) 
 	{
 		for(ComponentCamera camera : cameras)
 		{

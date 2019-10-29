@@ -2,35 +2,38 @@ package security;
 
 public class LeafCamera implements ComponentCamera 
 {
-	private StateCamera state;
+	private Camera camera;
 	
-	public LeafCamera(StateCamera state)
+	public LeafCamera(Camera state)
 	{
-		this.state = state;
+		this.camera = state;
 	}
 	
 	
-	public LeafCamera(StateCamera state, DirectionCamera direction)
+	public LeafCamera(Camera state, DirectionCamera direction)
 	{
-		this.state = state;
-		this.state.setDirection(direction);
+		this.camera = state;
+		this.camera.setDirection(direction);
 	}
 	
 	
-	public void setState(StateCamera state) 
+	public void setState(Camera state) 
 	{
-		this.state = state;
+		// If it changes the state of the camera, doesn't mean it changes the properties.
+		PropertiesCamera properties = camera.getProperties();
+		this.camera = state;
+		camera.setProperties(properties);
 	}
 
 	
 	public void setDirection(DirectionCamera direction) 
 	{
-		this.state.setDirection(direction);
+		this.camera.setDirection(direction);
 	}
 	
 	
-	public StateCamera getState()
+	public Camera getState()
 	{
-		return state;
+		return camera;
 	}
 }
