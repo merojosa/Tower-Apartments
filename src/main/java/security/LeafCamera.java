@@ -1,16 +1,16 @@
 package security;
 
-public class CameraImplementation implements Camera 
+public class LeafCamera implements ComponentCamera 
 {
 	private StateCamera state;
 	
-	public CameraImplementation(StateCamera state)
+	public LeafCamera(StateCamera state)
 	{
 		this.state = state;
 	}
 	
 	
-	public CameraImplementation(StateCamera state, DirectionCamera direction)
+	public LeafCamera(StateCamera state, DirectionCamera direction)
 	{
 		this.state = state;
 		this.state.setDirection(direction);
