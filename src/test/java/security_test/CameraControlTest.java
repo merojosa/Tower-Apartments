@@ -48,9 +48,4 @@ public class CameraControlTest
 			Assert.assertSame(camera.getProperties().getDirection(), DirectionCamera.RIGHT);
 		}
 	}
-	
-	public void test()
-	{
-		
-	}
 }

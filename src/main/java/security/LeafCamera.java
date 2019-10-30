@@ -20,7 +20,6 @@ public class LeafCamera implements ComponentCamera
 	}
 	
 	
-	
 	public void setState(Camera state) 
 	{
 		// If it changes the state of the camera, doesn't mean it changes the properties.
@@ -43,11 +42,9 @@ public class LeafCamera implements ComponentCamera
 		return list;
 	}
 	
+	
 	public PropertiesCamera getProperties()
 	{
-		// Doesn't make sense ask for properties
 		return camera.getProperties();
 	}
-	
-
 }

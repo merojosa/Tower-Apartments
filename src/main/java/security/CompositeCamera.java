@@ -38,6 +38,7 @@ public class CompositeCamera implements ComponentCamera
 	
 	public PropertiesCamera getProperties()
 	{
+		// Doesn't make sense ask for properties
 		return null;
 	}
 	
