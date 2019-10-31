@@ -3,11 +3,11 @@ package security_test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import security.Camera;
-import security.CameraImplementation;
+import security.ComponentCamera;
+import security.LeafCamera;
 import security.CompositeCamera;
 import security.DirectionCamera;
-import security.StateCamera;
+import security.Camera;
 
 public class CameraControlTest 
 {
@@ -15,38 +15,37 @@ public class CameraControlTest
 	@Test
 	public void changeDirectionCameraOnTest() 
 	{
-		Camera camera = new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT);
+		ComponentCamera camera = new LeafCamera(Camera.ON, DirectionCamera.LEFT);
 		camera.setDirection(DirectionCamera.RIGHT);
-		Assert.assertSame(DirectionCamera.RIGHT, ((CameraImplementation) camera).getState().getDirection());
+		Assert.assertSame(DirectionCamera.RIGHT, camera.getProperties().getDirection());
 	}
 	
 	
 	@Test
 	public void changeDirectionCameraOffTest() 
 	{
-		Camera camera = new CameraImplementation(StateCamera.OFF);
+		ComponentCamera camera = new LeafCamera(Camera.OFF);
 		camera.setDirection(DirectionCamera.LEFT);
-		Assert.assertNotSame(DirectionCamera.LEFT, ((CameraImplementation) camera).getState().getDirection());
+		Assert.assertNotSame(DirectionCamera.LEFT, camera.getProperties().getDirection());
 	}
 	
 	
 	@Test
 	public void changeDirectionCompositeTest()
 	{
-		Camera composite_test = new CompositeCamera.Builder()
-								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
-								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
-								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.RIGHT))
-								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.CENTER))
-								.addCamera(new CameraImplementation(StateCamera.ON, DirectionCamera.LEFT))
+		ComponentCamera composite_test = new CompositeCamera.Builder()
+								.addCamera(new LeafCamera(Camera.ON, DirectionCamera.CENTER))
+								.addCamera(new LeafCamera(Camera.ON, DirectionCamera.LEFT))
+								.addCamera(new LeafCamera(Camera.ON, DirectionCamera.RIGHT))
+								.addCamera(new LeafCamera(Camera.ON, DirectionCamera.CENTER))
+								.addCamera(new LeafCamera(Camera.ON, DirectionCamera.LEFT))
 								.build();
 		
 		composite_test.setDirection(DirectionCamera.RIGHT);
 		
-		for(Camera camera : ((CompositeCamera) composite_test).getCameras())
+		for(ComponentCamera camera : composite_test.getSetCamera())
 		{
-			Assert.assertSame(((CameraImplementation) camera).getState().getDirection(), DirectionCamera.RIGHT);
+			Assert.assertSame(camera.getProperties().getDirection(), DirectionCamera.RIGHT);
 		}
 	}
-
 }

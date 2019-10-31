@@ -2,5 +2,7 @@ package security;
 
 public interface InternetService 
 {
-	public boolean accessWebsite(String url);
+	public InternetService accessWebsite(String url);
+	
+	public boolean isNull();
 }

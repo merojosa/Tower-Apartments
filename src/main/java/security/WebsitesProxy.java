@@ -2,42 +2,44 @@ package security;
 
 import java.util.HashSet;
 
-public class WebsitesProxy extends Proxy
+public class WebsitesProxy implements InternetService
 {
-	private HashSet<String> forbiddenWebsites;
+	private HashSet<String> blockedWebsites;
 	
 	// Wrapper
-	private Proxy proxy;
+	private InternetService proxyWrapper;
 	
 	
-	public WebsitesProxy(Proxy proxy)
+	public WebsitesProxy(InternetService proxy)
 	{
-		this.proxy = proxy;
+		this.proxyWrapper = proxy;
+		this.blockedWebsites = new HashSet<String>();
+		loadBlockedWebsites();
 	}
 	
 	
-	@Override
-	protected boolean validateAccess(String url) 
+	public InternetService accessWebsite(String url) 
 	{
-		if(forbiddenWebsites.contains(url) == true)
+		InternetService service = proxyWrapper.accessWebsite(url);
+		if(service.isNull() == false && blockedWebsites.contains(url) == true)
 		{
-			return false;
+			service = new InternetNull();
 		}
-		else
-		{
-			return ((AccessProxy) proxy).accessWebsite(url);
-		}
+		
+		return service;
 	}
 	
-	public boolean accessWebsite(String url) 
+	// Este metodo variara cuando se configure realmente cuales seran los sitios bloqueados.
+	private void loadBlockedWebsites()
 	{
-		return validateAccess(url);
+		blockedWebsites.add("xxx.com");
 	}
-	
 
-	public void setForbiddenWebsites(HashSet<String> forbiddenWebsites) 
+
+	public boolean isNull() 
 	{
-		this.forbiddenWebsites = forbiddenWebsites;
+		return false;
 	}
+
 
 }

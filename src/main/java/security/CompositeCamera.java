@@ -3,19 +3,19 @@ package security;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompositeCamera implements Camera
+public class CompositeCamera implements ComponentCamera
 {
-	private List<Camera> cameras;
+	private List<ComponentCamera> cameras;
 	
 	private CompositeCamera()
 	{
-		cameras = new ArrayList<Camera>();
+		cameras = new ArrayList<ComponentCamera>();
 	}
 
 	
-	public void setState(StateCamera state) 
+	public void setState(Camera state) 
 	{
-		for(Camera camera : cameras)
+		for(ComponentCamera camera : cameras)
 		{
 			camera.setState(state);
 		}
@@ -24,22 +24,22 @@ public class CompositeCamera implements Camera
 	
 	public void setDirection(DirectionCamera direction) 
 	{
-		for(Camera camera : cameras)
+		for(ComponentCamera camera : cameras)
 		{
 			camera.setDirection(direction);
 		}
 	}
 	
 	
-	public List<Camera> getCameras()
+	public List<ComponentCamera> getSetCamera()
 	{
 		return cameras;
 	}
 	
-	
-	public void setCameras(List<Camera> cameras)
+	public PropertiesCamera getProperties()
 	{
-		this.cameras = cameras;
+		// Doesn't make sense ask for properties
+		return null;
 	}
 	
 	
@@ -53,9 +53,9 @@ public class CompositeCamera implements Camera
 		}
 		
 		
-		public Builder addCamera(Camera camera)
+		public Builder addCamera(ComponentCamera camera)
 		{
-			composite.getCameras().add(camera);
+			composite.getSetCamera().add(camera);
 			return this;
 		}
 		

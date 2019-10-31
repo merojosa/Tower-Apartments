@@ -1,41 +1,38 @@
 package security;
 
 // Base decorator class
-public class AccessProxy extends Proxy
+public class AccessProxy implements InternetService
 {	
 	private final int ACCESS_ALLOWED = 10;	
-	private final InternetService service;
 	
 	private int accessCounter;
 
 	
-	public AccessProxy(InternetService service)
+	public AccessProxy()
 	{
-		this.service = service;
 		accessCounter = 0;
 	}
 
 
-	@Override
-	protected boolean validateAccess(String url) 
+	public InternetService accessWebsite(String url) 
 	{
+		InternetService service = new InternetImplementation();
+		
 		if(accessCounter < ACCESS_ALLOWED)
 		{
 			++accessCounter;
-			return true;
+		}
+		else
+		{
+			service = new InternetNull();
 		}
 
-		return false;
+		return service;
 	}
 
 
-	public boolean accessWebsite(String url) 
+	public boolean isNull() 
 	{
-		if(validateAccess(url) == true)
-		{
-			return service.accessWebsite(url);
-		}
-		
 		return false;
 	}
 }
