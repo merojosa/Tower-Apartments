@@ -36,9 +36,9 @@ public class CompositeCamera implements ComponentCamera
 		return cameras;
 	}
 	
-	public PropertiesCamera getProperties()
+	public DirectionCamera getDirection()
 	{
-		// Doesn't make sense ask for properties
+		// Doesn't make sense ask for direction
 		return null;
 	}
 	
