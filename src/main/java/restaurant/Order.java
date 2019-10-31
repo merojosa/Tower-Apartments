@@ -1,3 +1,4 @@
+package restaurant;
 
 public class Order {
 	
@@ -11,7 +12,7 @@ public class Order {
 		return product.description() + " cost: " + product.price(); 
 	}
 	
-	public int getPrice() {
+	public double getPrice() {
 		return product.price();
 	}
 }

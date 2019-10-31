@@ -1,3 +1,4 @@
+package restaurant;
 
 public class ItalianSandwich extends Sandwich implements SandwichInterface {
 	//final static int PRICE = 6; 
@@ -7,7 +8,7 @@ public class ItalianSandwich extends Sandwich implements SandwichInterface {
 		this.price = 6; 
 	}
 	
-	public int price() {
+	public double price() {
 		return price;
 	}
 	

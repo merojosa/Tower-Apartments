@@ -1,5 +1,6 @@
+package restaurant;
 
-public abstract class Sandwich {
+public abstract class Sandwich implements SandwichInterface {
 	public enum Bread {CIABATTA, MEXICAN_BREAD}
 	public enum MainIngredient {CARNITAS, SALAMI}
 	

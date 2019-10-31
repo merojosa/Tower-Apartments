@@ -1,6 +1,7 @@
+package restaurant;
 
 public interface SandwichInterface {
-	public int price();
+	public double price();
 	public String description();
 	
 }

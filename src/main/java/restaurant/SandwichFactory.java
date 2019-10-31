@@ -1,3 +1,4 @@
+package restaurant;
 
 public abstract class SandwichFactory {
 	
