@@ -19,6 +19,12 @@ public class LeafCamera implements ComponentCamera
 		this.camera.setDirection(direction);
 	}
 	
+	public LeafCamera(Camera camera, DirectionCamera direction, LocationCamera location)
+	{
+		this.camera = camera;
+		this.camera.setDirection(direction);
+		this.camera.properties.setLocation(location);
+	}
 	
 	public void setState(Camera state) 
 	{
@@ -46,5 +52,10 @@ public class LeafCamera implements ComponentCamera
 	public PropertiesCamera getProperties()
 	{
 		return camera.getProperties();
+	}
+	
+	public Camera getCamera()
+	{
+		return camera;
 	}
 }
