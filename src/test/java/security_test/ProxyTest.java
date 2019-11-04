@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import security.AccessProxy;
-import security.InternetImplementation;
 import security.InternetService;
 import security.WebsitesProxy;
 
