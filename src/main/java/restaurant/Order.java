@@ -1,6 +1,6 @@
 package restaurant;
 
-public class Order {
+public class Order  {
 	
 	private Sandwich product;
 		

@@ -3,10 +3,10 @@ package restaurant;
 import java.util.*;
 
 public class Cashier {
-	private Queue<Order> orders; 
+	private ArrayList<Order> orders; 
 	
 	public Cashier() {
-		this.orders = new LinkedList<Order>(); 
+		this.orders = new ArrayList<Order>(); 
 	}
 	
 	public void addOrder(Order order){
@@ -27,20 +27,14 @@ public class Cashier {
 	
 	public static class Memento {
 		
-		private final Queue<Order> state; 
+		private final ArrayList<Order> state; 
 		
-		private Memento(Queue<Order> state)
+		private Memento(ArrayList<Order> orders)
 		{
-			//deep copy
-			this.state = new LinkedList<Order>();
-			for(Order item: state) {
-				this.state.add(item); 
+			state = new ArrayList<Order>(); 
+			for (Order o: orders) {
+			     state.add(o);
 			}
-			
-		}
-		
-
-	}
-	
-	
+		}	
+	}	
 }

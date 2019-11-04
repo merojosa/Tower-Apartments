@@ -1,15 +1,15 @@
 package restaurant;
 
 public class WithCheese implements SandwichInterface{
-	private Sandwich sandwichWrapper;
+	private SandwichInterface sandwichWrapper;
 	
-	public WithCheese(Sandwich sandwich) {
+	public WithCheese(SandwichInterface sandwich) {
 		this.sandwichWrapper = sandwich; 
 	}
 	
 
 	public String description() {
-		return sandwichWrapper.description() + "with cheese";
+		return sandwichWrapper.description() + " with cheese";
 	}
 	
 	public double price() {
