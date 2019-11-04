@@ -1,6 +1,6 @@
 package actuators_sensors;
 
-public class ACActuator extends Device
+public class AirActuator extends Device
 {
 	private boolean state;
 

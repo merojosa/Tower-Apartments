@@ -1,12 +1,12 @@
 package actuators_sensors;
 
-public class ACFactory extends DeviceFactory 
+public class AirFactory extends DeviceFactory 
 {
 
 	@Override
 	protected Device createDevice()
 	{
-		return new ACActuator();
+		return new AirActuator();
 	}
 
 }
