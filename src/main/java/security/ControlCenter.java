@@ -6,6 +6,9 @@ import java.util.ArrayList;
 // Nota, se esta violando el patron Single Responsibility.
 public class ControlCenter implements Serializable
 {
+	private static int FIRSTFLOORCAMERASINDEX = 1;
+	private static int SECONDFLOORCAMERASINDEX = 2;
+	
 	private LeafCamera camera1;
 	private LeafCamera camera2;
 	private LeafCamera camera3;
@@ -14,6 +17,7 @@ public class ControlCenter implements Serializable
 	private LeafCamera camera6;
 	
 	private ArrayList<LeafCamera> allCameras;
+	private ArrayList<ComponentCamera> groupedCameras;
 	
 	//handler del chain of responsibility
 	private AutoIdentifier identifier;
@@ -41,6 +45,8 @@ public class ControlCenter implements Serializable
 		allCameras.add(camera6);
 		
 		log = new AccesLog();
+		
+		groupedCameras = new ArrayList<ComponentCamera>();
 	}
 	
 	public synchronized static ControlCenter getControlCenter()
@@ -73,7 +79,7 @@ public class ControlCenter implements Serializable
 		if (foundID == true)
 			System.out.println(result);
 		else
-			System.out.println("No se pudo encontrar al ID en las cámaras\n");
+			System.out.println("No se pudo encontrar al ID en las camaras");
 	}
 	
 	public void addEntranceLog(String ID)
@@ -88,4 +94,36 @@ public class ControlCenter implements Serializable
 		System.out.println(result);
 	}
 	
+	public void makeFirstFloorCamerasComposite()
+	{
+		ComponentCamera firstFloorCameras = new CompositeCamera.Builder().addCamera(camera1).addCamera(camera3).addCamera(camera5).build();
+		groupedCameras.add(FIRSTFLOORCAMERASINDEX,firstFloorCameras);
+	}
+	
+	public void makeSecondFloorCamerasComposite()
+	{
+		ComponentCamera secondFloorCameras = new CompositeCamera.Builder().addCamera(camera2).addCamera(camera4).addCamera(camera6).build();
+		groupedCameras.add(SECONDFLOORCAMERASINDEX,secondFloorCameras);
+	}
+	
+	public void changeFirstFloorCamerasDirection(DirectionCamera direction)
+	{
+		groupedCameras.get(FIRSTFLOORCAMERASINDEX).setDirection(direction);
+	}
+	
+	public void changeSecondFloorCamerasDirection(DirectionCamera direction)
+	{
+		groupedCameras.get(SECONDFLOORCAMERASINDEX).setDirection(direction);
+	}
+	
+	public void showCamerasStatus()
+	{
+		String result = "";
+		for (int index = 0; index < allCameras.size(); index++)
+		{
+			result = result + "Camara numero " + index + " se encuentra en " + allCameras.get(index).getProperties().getLocation() 
+							+ " y se encuentra viendo hacia " + allCameras.get(index).getProperties().getDirection() + "\n";
+		}
+		System.out.println(result);
+	}
 }
