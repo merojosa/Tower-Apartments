@@ -4,16 +4,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import actuators_sensors.ActionDevice;
-import actuators_sensors.AirFactory;
-import actuators_sensors.AirOnAction;
-import actuators_sensors.Apartment;
-import actuators_sensors.DeviceFactory;
-import actuators_sensors.LightsFactory;
-import actuators_sensors.Mediator;
-import actuators_sensors.MovementFactory;
-import actuators_sensors.TempAction;
-import actuators_sensors.TempFactory;
+import actions.ActionDevice;
+import actions.AirOnAction;
+import actions.TempAction;
+import construction_devices.AirFactory;
+import construction_devices.DeviceFactory;
+import construction_devices.LightsFactory;
+import construction_devices.MovementFactory;
+import construction_devices.TempFactory;
+import management.Apartment;
+import management.Mediator;
 
 public class DeviceTest 
 {

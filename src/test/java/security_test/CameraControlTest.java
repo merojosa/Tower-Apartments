@@ -3,11 +3,11 @@ package security_test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import security.ComponentCamera;
-import security.LeafCamera;
-import security.CompositeCamera;
-import security.DirectionCamera;
-import security.Camera;
+import cameras_management.Camera;
+import cameras_management.ComponentCamera;
+import cameras_management.CompositeCamera;
+import cameras_management.DirectionCamera;
+import cameras_management.LeafCamera;
 
 public class CameraControlTest 
 {

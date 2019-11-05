@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import security.AccessProxy;
-import security.InternetService;
-import security.WebsitesProxy;
+import proxy.AccessProxy;
+import proxy.InternetService;
+import proxy.WebsitesProxy;
 
 public class ProxyTest 
 {
