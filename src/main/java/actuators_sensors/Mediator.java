@@ -7,22 +7,22 @@ import java.util.List;
 public class Mediator 
 {
 	// Necesito definir que devuelvo de acuerdo a la llave.
-	private Hashtable<String, List<Object>> behaviors;
+	private Hashtable<String, List<ActionDevice>> behaviors;
 	
 	
 	public Mediator()
 	{
-		behaviors = new Hashtable<String, List<Object>>();
+		behaviors = new Hashtable<String, List<ActionDevice>>();
 	}
 	
 	
-	public void addBehavior(String keyDevice, Object action)
+	public void addBehavior(String keyDevice, ActionDevice action)
 	{
-		List<Object> previousBehaviors = behaviors.get(keyDevice);
+		List<ActionDevice> previousBehaviors = behaviors.get(keyDevice);
 		
 		if(previousBehaviors == null)
 		{
-			previousBehaviors = new ArrayList<Object>();
+			previousBehaviors = new ArrayList<ActionDevice>();
 		}
 			
 		previousBehaviors.add(action);	
@@ -32,12 +32,14 @@ public class Mediator
 	
 	public void getNotification(String keyDevice)
 	{
-		Object action = behaviors.get(keyDevice);
+		List<ActionDevice> listActions = behaviors.get(keyDevice);
 		
-		// If there was an action established.
-		if(action != null)
+		if(listActions != null)
 		{
-			
+			for(ActionDevice action : listActions)
+			{
+				action.execute();
+			}
 		}
 	}
 }
