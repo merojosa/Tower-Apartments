@@ -1,11 +1,13 @@
 package construction_devices;
 
+import management.Mediator;
+
 public abstract class Device 
 {
-	public enum IdDevice 
+	protected Mediator mediator;
+	
+	public Device(Mediator mediator)
 	{
-		TEMP, SMOKE, MOVEMENT, LIGHTS, AC, ALARM;
+		this.mediator = mediator;
 	}
-
-	public abstract IdDevice getId();
 }

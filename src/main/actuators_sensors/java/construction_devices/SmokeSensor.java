@@ -1,21 +1,24 @@
 package construction_devices;
 
+import management.Mediator;
+
 public class SmokeSensor extends Device 
-{
-	
+{	
 	private boolean detection;
+
 	
-	@Override
-	public IdDevice getId()
+	public SmokeSensor(Mediator mediator) 
 	{
-		return IdDevice.SMOKE;
+		super(mediator);
 	}
+	
 
 	public boolean getDetection() 
 	{
 		return detection;
 	}
 
+	
 	public void detectSmoke()
 	{
 		detection = true;

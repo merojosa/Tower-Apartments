@@ -1,14 +1,16 @@
 package construction_devices;
 
+import management.Mediator;
+
 public class MovementSensor extends Device
 {
-	private boolean motion;
-	
-	@Override
-	public IdDevice getId()
+	public MovementSensor(Mediator mediator) 
 	{
-		return IdDevice.MOVEMENT;
+		super(mediator);
 	}
+
+
+	private boolean motion;
 	
 	
 	public boolean getMotion()

@@ -1,14 +1,15 @@
 package construction_devices;
 
+import management.Mediator;
+
 public class LightsActuator extends Device
 {
 	private boolean state;
+
 	
-	
-	@Override
-	public IdDevice getId() 
+	public LightsActuator(Mediator mediator)
 	{
-		return IdDevice.LIGHTS;
+		super(mediator);
 	}
 	
 	

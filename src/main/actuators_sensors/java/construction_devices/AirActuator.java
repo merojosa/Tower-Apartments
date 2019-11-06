@@ -1,14 +1,17 @@
 package construction_devices;
 
+import management.Mediator;
+
 public class AirActuator extends Device
-{
+{	
 	private boolean state;
 
-	@Override
-	public IdDevice getId() 
+	
+	public AirActuator(Mediator mediator) 
 	{
-		return IdDevice.AC;
+		super(mediator);
 	}
+
 	
 	public void turnOff()
 	{

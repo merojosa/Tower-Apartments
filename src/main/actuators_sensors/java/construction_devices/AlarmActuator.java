@@ -1,15 +1,17 @@
 package construction_devices;
 
+import management.Mediator;
+
 public class AlarmActuator extends Device
 {
-	
 	private boolean sound;
 
-	@Override
-	public IdDevice getId() 
+	
+	public AlarmActuator(Mediator mediator) 
 	{
-		return IdDevice.ALARM;
+		super(mediator);
 	}
+
 	
 	public void makeSound()
 	{
