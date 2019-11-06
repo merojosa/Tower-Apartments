@@ -11,10 +11,10 @@ public class Apartment
 	private List<Device> devices;
 	private Mediator mediator;
 	
-	private Apartment()
+	private Apartment(Mediator mediator)
 	{
 		devices = new ArrayList<Device>();
-		mediator = new Mediator();
+		this.mediator = new Mediator();
 	}
 	
 	
@@ -28,9 +28,9 @@ public class Apartment
 	{
 		private Apartment apartment;
 		
-		public Builder()
+		public Builder(Mediator mediator)
 		{
-			apartment = new Apartment();
+			apartment = new Apartment(mediator);
 		}
 		
 		
