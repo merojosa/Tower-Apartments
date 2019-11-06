@@ -4,43 +4,42 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import actions.ActionDevice;
+import actions.ActionDeviceStrategy;
 
 public class Mediator 
 {
-	// Necesito definir que devuelvo de acuerdo a la llave.
-	private Hashtable<String, List<ActionDevice>> behaviors;
+	private Hashtable<String, List<ActionDeviceStrategy>> behaviors;
 	
 	
 	public Mediator()
 	{
-		behaviors = new Hashtable<String, List<ActionDevice>>();
+		behaviors = new Hashtable<String, List<ActionDeviceStrategy>>();
 	}
 	
 	
-	public void addBehavior(String keyDevice, ActionDevice action)
+	public void addBehavior(ActionDeviceStrategy action, ActionDeviceStrategy answer)
 	{
-		List<ActionDevice> previousBehaviors = behaviors.get(keyDevice);
+		List<ActionDeviceStrategy> previousBehaviors = behaviors.get(action.getKey());
 		
 		if(previousBehaviors == null)
 		{
-			previousBehaviors = new ArrayList<ActionDevice>();
+			previousBehaviors = new ArrayList<ActionDeviceStrategy>();
 		}
 			
-		previousBehaviors.add(action);	
-		behaviors.put(keyDevice, previousBehaviors);
+		previousBehaviors.add(answer);	
+		behaviors.put(action.getKey(), previousBehaviors);
 	}	
 	
 	
-	public void getNotification(String keyDevice)
+	public void notifyAction(ActionDeviceStrategy action)
 	{
-		List<ActionDevice> listActions = behaviors.get(keyDevice);
+		List<ActionDeviceStrategy> answersAction = behaviors.get(action.getKey());
 		
-		if(listActions != null)
+		if(answersAction != null)
 		{
-			for(ActionDevice action : listActions)
+			for(ActionDeviceStrategy answer : answersAction)
 			{
-				action.execute();
+				answer.execute();
 			}
 		}
 	}
