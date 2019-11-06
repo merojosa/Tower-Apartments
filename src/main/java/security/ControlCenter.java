@@ -6,8 +6,9 @@ import java.util.ArrayList;
 // Nota, se esta violando el patron Single Responsibility.
 public class ControlCenter implements Serializable
 {
-	private static int FIRSTFLOORCAMERASINDEX = 1;
-	private static int SECONDFLOORCAMERASINDEX = 2;
+	private int FIRST_FLOOR_CAMERAS_INDEX = 0;
+	private int SECOND_FLOOR_CAMERAS_INDEX = 0;
+	private static int MIN_ARRAY_SIZE = 6;
 	
 	private LeafCamera camera1;
 	private LeafCamera camera2;
@@ -47,6 +48,8 @@ public class ControlCenter implements Serializable
 		log = new AccesLog();
 		
 		groupedCameras = new ArrayList<ComponentCamera>();
+		
+		identifier = new CameraIdentifier();
 	}
 	
 	public synchronized static ControlCenter getControlCenter()
@@ -63,7 +66,7 @@ public class ControlCenter implements Serializable
         return INSTANCE;
 	}
 	
-	public void identifyID(String ID)
+	public boolean identifyID(String ID)
 	{
 		boolean foundID = false;
 		String result = "";
@@ -77,9 +80,16 @@ public class ControlCenter implements Serializable
 		}
 		
 		if (foundID == true)
+		{
 			System.out.println(result);
+			return foundID;
+		}
 		else
+		{
 			System.out.println("No se pudo encontrar al ID en las camaras");
+			return foundID;
+		}
+			
 	}
 	
 	public void addEntranceLog(String ID)
@@ -97,23 +107,25 @@ public class ControlCenter implements Serializable
 	public void makeFirstFloorCamerasComposite()
 	{
 		ComponentCamera firstFloorCameras = new CompositeCamera.Builder().addCamera(camera1).addCamera(camera3).addCamera(camera5).build();
-		groupedCameras.add(FIRSTFLOORCAMERASINDEX,firstFloorCameras);
+		groupedCameras.add(firstFloorCameras);
+		FIRST_FLOOR_CAMERAS_INDEX = groupedCameras.indexOf(firstFloorCameras);
 	}
 	
 	public void makeSecondFloorCamerasComposite()
 	{
 		ComponentCamera secondFloorCameras = new CompositeCamera.Builder().addCamera(camera2).addCamera(camera4).addCamera(camera6).build();
-		groupedCameras.add(SECONDFLOORCAMERASINDEX,secondFloorCameras);
+		groupedCameras.add(secondFloorCameras);
+		SECOND_FLOOR_CAMERAS_INDEX = groupedCameras.indexOf(secondFloorCameras);
 	}
 	
 	public void changeFirstFloorCamerasDirection(DirectionCamera direction)
 	{
-		groupedCameras.get(FIRSTFLOORCAMERASINDEX).setDirection(direction);
+		groupedCameras.get(FIRST_FLOOR_CAMERAS_INDEX).setDirection(direction);
 	}
 	
 	public void changeSecondFloorCamerasDirection(DirectionCamera direction)
 	{
-		groupedCameras.get(SECONDFLOORCAMERASINDEX).setDirection(direction);
+		groupedCameras.get(SECOND_FLOOR_CAMERAS_INDEX).setDirection(direction);
 	}
 	
 	public void showCamerasStatus()
@@ -126,4 +138,16 @@ public class ControlCenter implements Serializable
 		}
 		System.out.println(result);
 	}
+	
+	//estos métodos son sólo para hacer tests------------------------
+	public void addID(int cameraIndex, String ID)
+	{
+		allCameras.get(cameraIndex).getProperties().addID(ID);
+	}
+	
+	public ComponentCamera getCameraGroup(int index)
+	{
+		return groupedCameras.get(index);
+	}
+	//---------------------------------------------------------------
 }

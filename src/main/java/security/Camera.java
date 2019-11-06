@@ -9,7 +9,7 @@ public enum Camera
 		public void setDirection(DirectionCamera direction) 
 		{
 			this.properties.setDirection(direction);
-			System.out.println("Se cambi� la direcci�n a " + this.properties.getDirection());
+			System.out.println("Se cambio la direccion a " + this.properties.getDirection());
 		}
 		
 	},
@@ -19,7 +19,7 @@ public enum Camera
 		@Override
 		public void setDirection(DirectionCamera direction)
 		{
-			System.out.println("No se puede cambiar la direcci�n estando la c�mara apagada.");
+			System.out.println("No se puede cambiar la direccion estando la camara apagada.");
 		}
 		
 	};
