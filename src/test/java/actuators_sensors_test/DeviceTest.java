@@ -4,14 +4,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import actions.ActionDevice;
+import actions.ActionDeviceStrategy;
 import actions.AirOnAction;
 import actions.TempAction;
+import construction_devices.AirActuator;
 import construction_devices.AirFactory;
+import construction_devices.Device;
 import construction_devices.DeviceFactory;
 import construction_devices.LightsFactory;
 import construction_devices.MovementFactory;
 import construction_devices.TempFactory;
+import construction_devices.TempSensor;
 import management.Apartment;
 import management.Mediator;
 
@@ -34,20 +37,35 @@ public class DeviceTest
 	@Test
 	public void apartmentConstruction()
 	{
-		Apartment apartment = new Apartment.Builder()
-								.addDevice(movementFactory.create())
-								.addDevice(tempFactory.create())
+		Mediator mediator = new Mediator();		
+		Apartment apartment = new Apartment.Builder(mediator)
+								.addDevice(tempFactory.create(mediator))
+								.addDevice(airFactory.create(mediator))
 								.build();
 		
 		Assert.assertSame(2, apartment.getDevices().size());
 	}
 	
-	@Test
-	public void setSensorBehaviorsTest()
+	@Test 
+	public void behaviorApartmentTest()
 	{
 		Mediator mediator = new Mediator();
-		ActionDevice tempAction = new TempAction(30, lightsFactory.create());
-		mediator.addBehavior(tempAction.generateKey(), new AirOnAction(true, airFactory.create()));		
+		TempSensor temp = (TempSensor) tempFactory.create(mediator);
+		AirActuator air = (AirActuator) airFactory.create(mediator);
+		
+		// When 31, the AC turns on.
+		ActionDeviceStrategy tempAction = new TempAction(31, temp);
+		ActionDeviceStrategy airAction = new AirOnAction(air);
+		
+		Apartment apartment = new Apartment.Builder(mediator)
+								.addDevice(temp)
+								.addDevice(air)
+								.addBehavior(tempAction, airAction)
+								.build();
+		
+		temp.setTemperature(25);
+		Assert.assertFalse(air.getState());
+		temp.setTemperature(31);
+		Assert.assertTrue(air.getState());
 	}
-
 }

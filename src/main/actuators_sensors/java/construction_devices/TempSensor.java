@@ -1,6 +1,7 @@
 package construction_devices;
 
 
+import actions.TempAction;
 import management.Mediator;
 
 public class TempSensor extends Device 
@@ -23,6 +24,6 @@ public class TempSensor extends Device
 	public void setTemperature(int temperature)
 	{
 		this.temperature = temperature;
-		//mediator.notifyAction(new TempAction(temperature));
+		mediator.notifyAction(new TempAction(temperature, this));
 	}
 }
