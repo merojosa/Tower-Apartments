@@ -10,4 +10,9 @@ public abstract class Device
 	{
 		this.mediator = mediator;
 	}
+	
+	public Mediator getMediator()
+	{
+		return mediator;
+	}
 }

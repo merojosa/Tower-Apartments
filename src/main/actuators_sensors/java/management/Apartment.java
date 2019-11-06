@@ -14,7 +14,7 @@ public class Apartment
 	private Apartment(Mediator mediator)
 	{
 		devices = new ArrayList<Device>();
-		this.mediator = new Mediator();
+		this.mediator = mediator;
 	}
 	
 	
@@ -36,7 +36,15 @@ public class Apartment
 		
 		public Builder addDevice(Device device)
 		{
-			apartment.devices.add(device);
+			// Both mediators needs to be the same (same reference, so that, == it's ok)
+			if(device.getMediator() == apartment.mediator)
+			{
+				apartment.devices.add(device);
+			}
+			else
+			{
+				System.out.println("Mediator distinto.");
+			}
 			return this;
 		}
 		
