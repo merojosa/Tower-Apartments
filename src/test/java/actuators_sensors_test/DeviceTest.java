@@ -9,7 +9,6 @@ import actions.AirOnAction;
 import actions.TempAction;
 import construction_devices.AirActuator;
 import construction_devices.AirFactory;
-import construction_devices.Device;
 import construction_devices.DeviceFactory;
 import construction_devices.LightsFactory;
 import construction_devices.MovementFactory;

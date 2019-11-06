@@ -1,33 +1,10 @@
 package cameras_management;
 
-public enum Camera 
+public abstract class Camera 
 {
-	ON
-	{
-
-		@Override
-		public void setDirection(DirectionCamera direction) 
-		{
-			this.properties.setDirection(direction);
-			System.out.println("Se cambio la direccion a " + this.properties.getDirection());
-		}
-		
-	},
-	OFF
-	{
-
-		@Override
-		public void setDirection(DirectionCamera direction)
-		{
-			System.out.println("No se puede cambiar la direccion estando la camara apagada.");
-		}
-		
-	};
-	
-
 	protected PropertiesCamera properties;
 	
-	Camera()
+	public Camera()
 	{
 		// By default, the direction is center.
 		properties = new PropertiesCamera();		

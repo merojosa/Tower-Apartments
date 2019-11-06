@@ -18,7 +18,7 @@ public class LeafCamera implements ComponentCamera
 	public LeafCamera(Camera camera, DirectionCamera direction)
 	{
 		this.camera = camera;
-		this.camera.setDirection(direction);
+		this.camera.properties.setDirection(direction);
 	}
 	
 	
