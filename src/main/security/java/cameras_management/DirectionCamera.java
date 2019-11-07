@@ -1,4 +1,4 @@
-package security;
+package cameras_management;
 
 public enum DirectionCamera 
 {

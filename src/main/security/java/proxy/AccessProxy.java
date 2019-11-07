@@ -1,4 +1,4 @@
-package security;
+package proxy;
 
 // Base decorator class
 public class AccessProxy implements InternetService

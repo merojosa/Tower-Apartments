@@ -1,4 +1,4 @@
-package security;
+package proxy;
 
 public class InternetNull implements InternetService {
 

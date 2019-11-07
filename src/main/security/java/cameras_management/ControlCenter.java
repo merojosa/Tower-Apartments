@@ -1,4 +1,4 @@
-package security;
+package cameras_management;
 
 import java.io.Serializable;
 import java.util.ArrayList;

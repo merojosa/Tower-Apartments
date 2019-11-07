@@ -1,7 +1,9 @@
-package security;
+package cameras_management;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cameras_management.Camera.PropertiesCamera;
 
 public class LeafCamera implements ComponentCamera 
 {
@@ -16,7 +18,7 @@ public class LeafCamera implements ComponentCamera
 	public LeafCamera(Camera camera, DirectionCamera direction)
 	{
 		this.camera = camera;
-		this.camera.setDirection(direction);
+		this.camera.properties.setDirection(direction);
 	}
 	
 	public LeafCamera(Camera camera, DirectionCamera direction, LocationCamera location)
@@ -28,10 +30,9 @@ public class LeafCamera implements ComponentCamera
 	
 	public void setState(Camera state) 
 	{
-		// If it changes the state of the camera, doesn't mean it changes the properties.
-		PropertiesCamera properties = camera.getProperties();
+		Object properties = state.getProperties();
 		this.camera = state;
-		camera.setProperties(properties);
+		this.camera.setProperties((PropertiesCamera) properties);
 	}
 
 	
@@ -49,9 +50,9 @@ public class LeafCamera implements ComponentCamera
 	}
 	
 	
-	public PropertiesCamera getProperties()
+	public DirectionCamera getDirection()
 	{
-		return camera.getProperties();
+		return camera.getProperties().getDirection();
 	}
 	
 	public Camera getCamera()
