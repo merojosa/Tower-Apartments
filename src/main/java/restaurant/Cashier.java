@@ -13,8 +13,23 @@ public class Cashier {
 		orders.add(order); 
 	}
 	
-	public void getOrder(Order order){
-		//return orders.add(order); 
+	public String getOrder(){
+		if(!orders.isEmpty()) {
+			return orders.get(0).generateBill()+ " is ready"; 				
+		}
+		else {
+			return "No orders"; 
+		}
+	}
+	
+	//Testing Method
+	public String printOrders() {
+		String bill = ""; 
+		for(Order o: orders) {
+			bill += o.generateBill()+ " ";
+		}
+		
+		return bill; 
 	}
 	
 	public Memento createState() {

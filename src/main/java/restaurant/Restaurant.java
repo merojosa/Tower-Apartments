@@ -13,4 +13,9 @@ public class Restaurant {
 			cashiers.add(new Cashier());
 		}
 	}
+	
+	//Testing Method
+	public Cashier getCashier(int num) {
+		return cashiers.get(num); 
+	}
 }

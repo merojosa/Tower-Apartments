@@ -2,14 +2,14 @@ package restaurant;
 
 public class Order  {
 	
-	private Sandwich product;
+	private SandwichInterface product;
 		
-	public Order(Sandwich sandwich) {
+	public Order(SandwichInterface sandwich) {
 		this.product = sandwich; 
 	}
 	
 	public String generateBill() {
-		return product.description() + " cost: " + product.price(); 
+		return product.description() + ", cost: " + product.price(); 
 	}
 	
 	public double getPrice() {
