@@ -8,7 +8,6 @@ public class ControlCenter implements Serializable
 {
 	private int FIRST_FLOOR_CAMERAS_INDEX = 0;
 	private int SECOND_FLOOR_CAMERAS_INDEX = 0;
-	private static int MIN_ARRAY_SIZE = 6;
 	
 	private LeafCamera camera1;
 	private LeafCamera camera2;
@@ -133,16 +132,16 @@ public class ControlCenter implements Serializable
 		String result = "";
 		for (int index = 0; index < allCameras.size(); index++)
 		{
-			result = result + "Camara numero " + index + " se encuentra en " + allCameras.get(index).getProperties().getLocation() 
-							+ " y se encuentra viendo hacia " + allCameras.get(index).getProperties().getDirection() + "\n";
+			result = result + "Camara numero " + index + " se encuentra en " + allCameras.get(index).getCamera().getProperties().getLocation() 
+							+ " y se encuentra viendo hacia " + allCameras.get(index).getCamera().getProperties().getDirection() + "\n";
 		}
 		System.out.println(result);
 	}
 	
-	//estos métodos son sólo para hacer tests------------------------
+	//estos mï¿½todos son sï¿½lo para hacer tests------------------------
 	public void addID(int cameraIndex, String ID)
 	{
-		allCameras.get(cameraIndex).getProperties().addID(ID);
+		allCameras.get(cameraIndex).getCamera().getProperties().addID(ID);
 	}
 	
 	public ComponentCamera getCameraGroup(int index)

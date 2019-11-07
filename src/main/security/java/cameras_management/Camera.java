@@ -1,5 +1,7 @@
 package cameras_management;
 
+import java.util.ArrayList;
+
 public abstract class Camera 
 {
 	protected PropertiesCamera properties;
@@ -32,10 +34,14 @@ public abstract class Camera
 	{
 		// Aqui podria haber mas propiedades como las personas enfocadas, etc...
 		private DirectionCamera direction;
+		private LocationCamera location;
+		private ArrayList<String> personasIdentificadas;
 		
 		public PropertiesCamera()
 		{
 			direction = DirectionCamera.CENTER;
+			location = LocationCamera.LIVINGROOM;
+			personasIdentificadas = new ArrayList<String>();
 		}
 		
 		public DirectionCamera getDirection()
@@ -47,5 +53,26 @@ public abstract class Camera
 		{
 			this.direction = direction;
 		}
+		
+		public LocationCamera getLocation()
+		{
+			return this.location;
+		}
+		
+		public void setLocation(LocationCamera location)
+		{
+			this.location = location;
+		}
+
+		public void addID(String ID) 
+		{
+			personasIdentificadas.add(ID);
+		}
+		
+		public boolean containID(String ID)
+		{
+			return personasIdentificadas.contains(ID);
+		}
+		
 	}
 }

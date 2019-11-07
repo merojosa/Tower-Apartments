@@ -31,7 +31,7 @@ public class ControlCenterTest
 		controler.changeFirstFloorCamerasDirection(DirectionCamera.RIGHT);
 		for (ComponentCamera camera: controler.getCameraGroup(0).getSetCamera())
 		{
-			Assert.assertSame(camera.getProperties().getDirection(), DirectionCamera.RIGHT);
+			Assert.assertSame(camera.getDirection(), DirectionCamera.RIGHT);
 		}
 		controler.showCamerasStatus();
 	}

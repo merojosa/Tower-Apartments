@@ -4,10 +4,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import security.AutoIdentifier;
-import security.Camera;
-import security.CameraIdentifier;
-import security.LocationCamera;
+import cameras_management.AutoIdentifier;
+import cameras_management.Camera;
+import cameras_management.CameraIdentifier;
+import cameras_management.CameraOn;
+import cameras_management.LocationCamera;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,10 @@ public class CameraIdentifierTest {
 		camaras = new ArrayList<Camera>();
 		identifier = new CameraIdentifier();
 		
-		camera1 = Camera.ON;
-		camera2 = Camera.ON;
-		camera3 = Camera.ON;
-		camera4 = Camera.ON;
+		camera1 = new CameraOn();
+		camera2 = new CameraOn();
+		camera3 = new CameraOn();
+		camera4 = new CameraOn();
 		
 		camera3.getProperties().addID("117560704");
 		camera3.getProperties().setLocation(LocationCamera.MAINROOM);
@@ -47,7 +48,7 @@ public class CameraIdentifierTest {
 	{
 		String result = "";
 		String ID = "117560704";
-		String expected = "La cámara en MAINROOM identificó al ID: 117560704";
+		String expected = "La cï¿½mara en MAINROOM identificï¿½ al ID: 117560704";
 		
 		for (Camera camara: camaras)
 		{
