@@ -3,9 +3,9 @@ package security_test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import security.ComponentCamera;
-import security.ControlCenter;
-import security.DirectionCamera;
+import cameras_management.ComponentCamera;
+import cameras_management.ControlCenter;
+import cameras_management.DirectionCamera;
 
 public class ControlCenterTest 
 {
