@@ -1,4 +1,4 @@
-package security;
+package cameras_management;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;

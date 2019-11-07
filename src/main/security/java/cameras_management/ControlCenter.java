@@ -30,12 +30,12 @@ public class ControlCenter implements Serializable
 	
 	private ControlCenter() 
 	{
-		camera1 = new LeafCamera(Camera.ON, DirectionCamera.LEFT, LocationCamera.MAINROOM);
-		camera2 = new LeafCamera(Camera.ON, DirectionCamera.RIGHT, LocationCamera.MAINROOM);
-		camera3 = new LeafCamera(Camera.ON, DirectionCamera.CENTER, LocationCamera.LIVINGROOM);
-		camera4 = new LeafCamera(Camera.ON, DirectionCamera.LEFT, LocationCamera.LIVINGROOM);
-		camera5 = new LeafCamera(Camera.ON, DirectionCamera.RIGHT, LocationCamera.KITCHEN);
-		camera6 = new LeafCamera(Camera.ON, DirectionCamera.CENTER, LocationCamera.KITCHEN);
+		camera1 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.MAINROOM);
+		camera2 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.MAINROOM);
+		camera3 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.LIVINGROOM);
+		camera4 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.LIVINGROOM);
+		camera5 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.KITCHEN);
+		camera6 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.KITCHEN);
 		
 		allCameras = new ArrayList<LeafCamera>();
 		allCameras.add(camera1);
