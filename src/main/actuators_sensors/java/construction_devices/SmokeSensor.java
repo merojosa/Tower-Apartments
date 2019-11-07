@@ -1,5 +1,6 @@
 package construction_devices;
 
+import actions.SmokeDetectedAction;
 import management.MediatorApartment;
 
 public class SmokeSensor extends Device 
@@ -10,6 +11,7 @@ public class SmokeSensor extends Device
 	public SmokeSensor(MediatorApartment mediator) 
 	{
 		super(mediator);
+		detection = false;
 	}
 	
 
@@ -22,5 +24,6 @@ public class SmokeSensor extends Device
 	public void detectSmoke()
 	{
 		detection = true;
+		mediator.notifyAction(new SmokeDetectedAction(this));
 	}
 }

@@ -1,5 +1,6 @@
 package construction_devices;
 
+import actions.MovementDetectedAction;
 import management.MediatorApartment;
 
 public class MovementSensor extends Device
@@ -22,5 +23,6 @@ public class MovementSensor extends Device
 	public void detectMotion()
 	{
 		motion = true;
+		mediator.notifyAction(new MovementDetectedAction(this));
 	}
 }

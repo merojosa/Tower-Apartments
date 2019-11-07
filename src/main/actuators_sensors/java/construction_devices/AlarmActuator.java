@@ -1,5 +1,7 @@
 package construction_devices;
 
+import actions.MakeSoundAction;
+import actions.StopSoundAction;
 import management.MediatorApartment;
 
 public class AlarmActuator extends Device
@@ -16,6 +18,13 @@ public class AlarmActuator extends Device
 	public void makeSound()
 	{
 		sound = true;
+		mediator.notifyAction(new MakeSoundAction(this));
+	}
+	
+	public void stopSound()
+	{
+		sound = false;
+		mediator.notifyAction(new StopSoundAction(this));
 	}
 	
 	public boolean getSound()
