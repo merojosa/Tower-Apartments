@@ -1,13 +1,13 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class SmokeSensor extends Device 
 {	
 	private boolean detection;
 
 	
-	public SmokeSensor(Mediator mediator) 
+	public SmokeSensor(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}

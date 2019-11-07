@@ -1,17 +1,17 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public abstract class Device 
 {
-	protected Mediator mediator;
+	protected MediatorApartment mediator;
 	
-	public Device(Mediator mediator)
+	public Device(MediatorApartment mediator)
 	{
 		this.mediator = mediator;
 	}
 	
-	public Mediator getMediator()
+	public MediatorApartment getMediator()
 	{
 		return mediator;
 	}

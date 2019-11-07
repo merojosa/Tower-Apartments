@@ -1,13 +1,13 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class LightsActuator extends Device
 {
 	private boolean state;
 
 	
-	public LightsActuator(Mediator mediator)
+	public LightsActuator(MediatorApartment mediator)
 	{
 		super(mediator);
 	}

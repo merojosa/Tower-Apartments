@@ -1,12 +1,12 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class MovementFactory extends DeviceFactory
 {
 
 	@Override
-	protected Device createDevice(Mediator mediator) 
+	protected Device createDevice(MediatorApartment mediator) 
 	{
 		return new MovementSensor(mediator);
 	}

@@ -1,10 +1,10 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class MovementSensor extends Device
 {
-	public MovementSensor(Mediator mediator) 
+	public MovementSensor(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}

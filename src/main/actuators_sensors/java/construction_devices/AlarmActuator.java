@@ -1,13 +1,13 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class AlarmActuator extends Device
 {
 	private boolean sound;
 
 	
-	public AlarmActuator(Mediator mediator) 
+	public AlarmActuator(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}

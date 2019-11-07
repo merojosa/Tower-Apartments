@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import actions.ActionDeviceStrategy;
+import actions.ActionDeviceCommand;
 import actions.AirOnAction;
 import actions.TempAction;
 import construction_devices.AirActuator;
@@ -15,7 +15,7 @@ import construction_devices.MovementFactory;
 import construction_devices.TempFactory;
 import construction_devices.TempSensor;
 import management.Apartment;
-import management.Mediator;
+import management.MediatorApartment;
 
 public class DeviceTest 
 {
@@ -36,7 +36,7 @@ public class DeviceTest
 	@Test
 	public void apartmentConstruction()
 	{
-		Mediator mediator = new Mediator();		
+		MediatorApartment mediator = new MediatorApartment();		
 		Apartment apartment = new Apartment.Builder(mediator)
 								.addDevice(tempFactory.create(mediator))
 								.addDevice(airFactory.create(mediator))
@@ -48,13 +48,13 @@ public class DeviceTest
 	@Test 
 	public void behaviorApartmentTest()
 	{
-		Mediator mediator = new Mediator();
+		MediatorApartment mediator = new MediatorApartment();
 		TempSensor temp = (TempSensor) tempFactory.create(mediator);
 		AirActuator air = (AirActuator) airFactory.create(mediator);
 		
 		// When 31, the AC turns on.
-		ActionDeviceStrategy tempAction = new TempAction(31, temp);
-		ActionDeviceStrategy airAction = new AirOnAction(air);
+		ActionDeviceCommand tempAction = new TempAction(31, temp);
+		ActionDeviceCommand airAction = new AirOnAction(air);
 		
 		Apartment apartment = new Apartment.Builder(mediator)
 								.addDevice(temp)

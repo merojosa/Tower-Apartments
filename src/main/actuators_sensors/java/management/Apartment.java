@@ -3,15 +3,15 @@ package management;
 import java.util.ArrayList;
 import java.util.List;
 
-import actions.ActionDeviceStrategy;
+import actions.ActionDeviceCommand;
 import construction_devices.Device;
 
 public class Apartment 
 {
 	private List<Device> devices;
-	private Mediator mediator;
+	private MediatorApartment mediator;
 	
-	private Apartment(Mediator mediator)
+	private Apartment(MediatorApartment mediator)
 	{
 		devices = new ArrayList<Device>();
 		this.mediator = mediator;
@@ -28,7 +28,7 @@ public class Apartment
 	{
 		private Apartment apartment;
 		
-		public Builder(Mediator mediator)
+		public Builder(MediatorApartment mediator)
 		{
 			apartment = new Apartment(mediator);
 		}
@@ -48,7 +48,7 @@ public class Apartment
 			return this;
 		}
 		
-		public Builder addBehavior(ActionDeviceStrategy action, ActionDeviceStrategy answer)
+		public Builder addBehavior(ActionDeviceCommand action, ActionDeviceCommand answer)
 		{
 			// To add a behavior, both devices involved need to exist in the apartment.
 			if( apartment.devices.contains(action.getDevice()) && apartment.devices.contains(answer.getDevice()) )

@@ -1,13 +1,13 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public class AirActuator extends Device
 {	
 	private boolean state;
 
 	
-	public AirActuator(Mediator mediator) 
+	public AirActuator(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}

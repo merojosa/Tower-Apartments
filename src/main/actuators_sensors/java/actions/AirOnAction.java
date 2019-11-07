@@ -3,7 +3,7 @@ package actions;
 import construction_devices.AirActuator;
 import construction_devices.Device;
 
-public class AirOnAction extends ActionDeviceStrategy 
+public class AirOnAction extends ActionDeviceCommand 
 {	
 	public AirOnAction(Device air)
 	{
