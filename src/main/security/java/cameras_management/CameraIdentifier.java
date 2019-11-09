@@ -13,6 +13,6 @@ public class CameraIdentifier implements AutoIdentifier
 	
 	public String identify(Camera camera, String ID)
 	{
-		return "La cámara en " + camera.properties.getLocation() + " identificó al ID: " + ID; 
+		return "La camara en " + camera.properties.getLocation() + " identifico al ID: " + ID; 
 	}
 }

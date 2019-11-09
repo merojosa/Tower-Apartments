@@ -15,7 +15,6 @@ public class ControlCenterTest
 	{
 		String ID = "117560704";
 		ControlCenter controler = ControlCenter.getControlCenter();
-		controler.showCamerasStatus();
 		controler.addID(3, ID);
 		boolean result = controler.identifyID(ID);
 		Assert.assertEquals(true, result);
@@ -25,7 +24,6 @@ public class ControlCenterTest
 	public void cameraControlTest()
 	{
 		ControlCenter controler = ControlCenter.getControlCenter();
-		controler.showCamerasStatus();
 		controler.makeFirstFloorCamerasComposite();
 		controler.showCamerasStatus();
 		controler.changeFirstFloorCamerasDirection(DirectionCamera.RIGHT);

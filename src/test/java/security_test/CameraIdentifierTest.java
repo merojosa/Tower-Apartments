@@ -48,7 +48,7 @@ public class CameraIdentifierTest {
 	{
 		String result = "";
 		String ID = "117560704";
-		String expected = "La c�mara en MAINROOM identific� al ID: 117560704";
+		String expected = "La camara en MAINROOM identifico al ID: 117560704";
 		
 		for (Camera camara: camaras)
 		{
