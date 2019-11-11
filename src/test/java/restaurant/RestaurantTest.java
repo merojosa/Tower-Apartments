@@ -1,10 +1,9 @@
-package Restaurant;
+package restaurant;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
-import restaurant.*;
 import restaurant.Cashier.Memento;
 
 public class RestaurantTest {
