@@ -3,9 +3,9 @@ package actions;
 import construction_devices.AirActuator;
 import construction_devices.Device;
 
-public class AirOnAction extends ActionDeviceCommand 
-{	
-	public AirOnAction(Device air)
+public class AirOffAction extends ActionDeviceCommand {
+
+	public AirOffAction(Device air) 
 	{
 		super(air);
 	}
@@ -13,12 +13,13 @@ public class AirOnAction extends ActionDeviceCommand
 	@Override
 	public void execute() 
 	{
-		((AirActuator) device).turnOn();
+		((AirActuator) device).turnOff();
 	}
 
 	@Override
 	public String getKey() 
 	{
-		return getClass().getName() + "_" + true;
+		return getClass().getName() + "_" + false;
 	}
+
 }

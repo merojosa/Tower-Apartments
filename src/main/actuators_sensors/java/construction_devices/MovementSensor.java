@@ -1,10 +1,11 @@
 package construction_devices;
 
-import management.Mediator;
+import actions.MovementDetectedAction;
+import management.MediatorApartment;
 
 public class MovementSensor extends Device
 {
-	public MovementSensor(Mediator mediator) 
+	public MovementSensor(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}
@@ -22,5 +23,6 @@ public class MovementSensor extends Device
 	public void detectMotion()
 	{
 		motion = true;
+		mediator.notifyAction(new MovementDetectedAction(this));
 	}
 }

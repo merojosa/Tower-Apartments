@@ -1,13 +1,15 @@
 package construction_devices;
 
-import management.Mediator;
+import actions.AirOffAction;
+import actions.AirOnAction;
+import management.MediatorApartment;
 
 public class AirActuator extends Device
 {	
 	private boolean state;
 
 	
-	public AirActuator(Mediator mediator) 
+	public AirActuator(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}
@@ -16,11 +18,13 @@ public class AirActuator extends Device
 	public void turnOff()
 	{
 		state = false;
+		mediator.notifyAction(new AirOffAction(this));
 	}
 	
 	public void turnOn()
 	{
 		state = true;
+		mediator.notifyAction(new AirOnAction(this));
 	}
 	
 	public boolean getState()

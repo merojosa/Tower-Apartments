@@ -2,11 +2,11 @@ package actions;
 
 import construction_devices.Device;
 
-public abstract class ActionDeviceStrategy
+public abstract class ActionDeviceCommand
 {		
 	protected Device device;
 	
-	public ActionDeviceStrategy(Device device)
+	public ActionDeviceCommand(Device device)
 	{
 		this.device = device;
 	}

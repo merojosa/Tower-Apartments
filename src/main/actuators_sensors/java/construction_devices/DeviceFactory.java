@@ -1,13 +1,13 @@
 package construction_devices;
 
-import management.Mediator;
+import management.MediatorApartment;
 
 public abstract class DeviceFactory
 {	
-	public Device create(Mediator mediator)
+	public Device create(MediatorApartment mediator)
 	{
 		return createDevice(mediator);
 	}
 	
-	protected abstract Device createDevice(Mediator mediator);
+	protected abstract Device createDevice(MediatorApartment mediator);
 }

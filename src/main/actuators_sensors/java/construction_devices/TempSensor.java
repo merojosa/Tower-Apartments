@@ -2,14 +2,14 @@ package construction_devices;
 
 
 import actions.TempAction;
-import management.Mediator;
+import management.MediatorApartment;
 
 public class TempSensor extends Device 
 {
 	private int temperature;
 
 
-	public TempSensor(Mediator mediator) 
+	public TempSensor(MediatorApartment mediator) 
 	{
 		super(mediator);
 	}

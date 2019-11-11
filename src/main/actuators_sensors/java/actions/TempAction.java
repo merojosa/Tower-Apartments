@@ -3,7 +3,7 @@ package actions;
 import construction_devices.Device;
 import construction_devices.TempSensor;
 
-public class TempAction extends ActionDeviceStrategy
+public class TempAction extends ActionDeviceCommand
 {
 	private int tempTrigger;
 	
