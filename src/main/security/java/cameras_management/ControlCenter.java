@@ -6,16 +6,6 @@ import java.util.ArrayList;
 // Nota, se esta violando el patron Single Responsibility.
 public class ControlCenter implements Serializable
 {
-	private int FIRST_FLOOR_CAMERAS_INDEX = 0;
-	private int SECOND_FLOOR_CAMERAS_INDEX = 0;
-	
-	private LeafCamera camera1;
-	private LeafCamera camera2;
-	private LeafCamera camera3;
-	private LeafCamera camera4;
-	private LeafCamera camera5;
-	private LeafCamera camera6;
-	
 	private ArrayList<LeafCamera> allCameras;
 	private ArrayList<ComponentCamera> groupedCameras;
 	
@@ -29,20 +19,7 @@ public class ControlCenter implements Serializable
 	
 	private ControlCenter() 
 	{
-		camera1 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.MAINROOM);
-		camera2 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.MAINROOM);
-		camera3 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.LIVINGROOM);
-		camera4 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.LIVINGROOM);
-		camera5 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.KITCHEN);
-		camera6 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.KITCHEN);
-		
 		allCameras = new ArrayList<LeafCamera>();
-		allCameras.add(camera1);
-		allCameras.add(camera2);
-		allCameras.add(camera3);
-		allCameras.add(camera4);
-		allCameras.add(camera5);
-		allCameras.add(camera6);
 		
 		log = new AccesLog();
 		
@@ -103,30 +80,21 @@ public class ControlCenter implements Serializable
 		System.out.println(result);
 	}
 	
-	public void makeFirstFloorCamerasComposite()
+	public void addCamera(LeafCamera camera)
 	{
-		ComponentCamera firstFloorCameras = new CompositeCamera.Builder().addCamera(camera1).addCamera(camera3).addCamera(camera5).build();
-		groupedCameras.add(firstFloorCameras);
-		FIRST_FLOOR_CAMERAS_INDEX = groupedCameras.indexOf(firstFloorCameras);
+		allCameras.add(camera);
 	}
 	
-	public void makeSecondFloorCamerasComposite()
+	public void addComposite(ComponentCamera component)
 	{
-		ComponentCamera secondFloorCameras = new CompositeCamera.Builder().addCamera(camera2).addCamera(camera4).addCamera(camera6).build();
-		groupedCameras.add(secondFloorCameras);
-		SECOND_FLOOR_CAMERAS_INDEX = groupedCameras.indexOf(secondFloorCameras);
+		groupedCameras.add(component);
 	}
 	
-	public void changeFirstFloorCamerasDirection(DirectionCamera direction)
+	public void changeCamerasDirection(int compositeIndex, DirectionCamera direction)
 	{
-		groupedCameras.get(FIRST_FLOOR_CAMERAS_INDEX).setDirection(direction);
+		groupedCameras.get(compositeIndex).setDirection(direction);
 	}
-	
-	public void changeSecondFloorCamerasDirection(DirectionCamera direction)
-	{
-		groupedCameras.get(SECOND_FLOOR_CAMERAS_INDEX).setDirection(direction);
-	}
-	
+
 	public void showCamerasStatus()
 	{
 		String result = "";
