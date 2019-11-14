@@ -1,6 +1,7 @@
 package security_test;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import cameras_management.CameraOn;
@@ -13,26 +14,44 @@ import cameras_management.LocationCamera;
 
 public class ControlCenterTest 
 {
-	ControlCenter controler = ControlCenter.getControlCenter();
+	ControlCenter controler;
 	
-	LeafCamera camera1 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.MAINROOM);
-	LeafCamera camera2 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.MAINROOM);
-	LeafCamera camera3 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.LIVINGROOM);
-	LeafCamera camera4 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.LIVINGROOM);
-	LeafCamera camera5 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.KITCHEN);
-	LeafCamera camera6 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.KITCHEN);
+	LeafCamera camera1;
+	LeafCamera camera2;
+	LeafCamera camera3;
+	LeafCamera camera4;
+	LeafCamera camera5;
+	LeafCamera camera6;
 	
-
-	@Test
-	public void identifierTest() 
+	@Before
+	public void init()
 	{
+		camera1 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.MAINROOM);
+		camera2 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.MAINROOM);
+		camera3 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.LIVINGROOM);
+		camera4 = new LeafCamera(new CameraOn(), DirectionCamera.LEFT, LocationCamera.LIVINGROOM);
+		camera5 = new LeafCamera(new CameraOn(), DirectionCamera.RIGHT, LocationCamera.KITCHEN);
+		camera6 = new LeafCamera(new CameraOn(), DirectionCamera.CENTER, LocationCamera.KITCHEN);
+		
+		controler = ControlCenter.getControlCenter();
+		
+		// init is called every test method, so that, if there is no clear, controller will have more than 6 cameras.
+		// After all, it's a singleton.
+		controler.getAllCameras().clear();
+		
 		controler.addCamera(camera1);
 		controler.addCamera(camera2);
 		controler.addCamera(camera3);
 		controler.addCamera(camera4);
 		controler.addCamera(camera5);
 		controler.addCamera(camera6);
-		
+	}
+	
+	
+	
+	@Test
+	public void identifierTest() 
+	{		
 		String ID = "117560704";
 		controler.addID(3, ID);
 		boolean result = controler.identifyID(ID);

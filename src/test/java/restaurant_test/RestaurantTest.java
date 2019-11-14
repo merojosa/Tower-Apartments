@@ -1,9 +1,18 @@
-package restaurant;
+package restaurant_test;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
+import restaurant.Cashier;
+import restaurant.ItalianSandwichFactory;
+import restaurant.MexicanSandwichFactory;
+import restaurant.Order;
+import restaurant.Restaurant;
+import restaurant.SandwichFactory;
+import restaurant.SandwichInterface;
+import restaurant.WithCheese;
+import restaurant.WithTomato;
 import restaurant.Cashier.Memento;
 
 public class RestaurantTest {

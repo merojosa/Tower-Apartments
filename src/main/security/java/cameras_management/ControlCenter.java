@@ -100,7 +100,7 @@ public class ControlCenter implements Serializable
 		String result = "";
 		for (int index = 0; index < allCameras.size(); index++)
 		{
-			result = result + "Camara numero " + index + " se encuentra en " + allCameras.get(index).getCamera().getProperties().getLocation() 
+			result = result + "Camara numero " + (index + 1) + " se encuentra en " + allCameras.get(index).getCamera().getProperties().getLocation() 
 							+ " y se encuentra viendo hacia " + allCameras.get(index).getCamera().getProperties().getDirection() + "\n";
 		}
 		System.out.println(result);
@@ -117,4 +117,9 @@ public class ControlCenter implements Serializable
 		return groupedCameras.get(index);
 	}
 	//---------------------------------------------------------------
+	
+	public ArrayList<LeafCamera> getAllCameras()
+	{
+		return allCameras;
+	}
 }
