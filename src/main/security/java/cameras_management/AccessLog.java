@@ -4,10 +4,10 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class AccesLog {
+public class AccessLog {
 	private ArrayList<String> log;
 	
-	public AccesLog()
+	public AccessLog()
 	{
 		log = new ArrayList<String>();
 	}
