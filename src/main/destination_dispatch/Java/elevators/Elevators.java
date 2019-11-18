@@ -1,7 +1,16 @@
 package elevators;
 
-public class Elevators {
+public class Elevator{
 	
+	int currentFloor; 
+	int destinationFloor; 
+	public userType type; 
+	int id; 
 	
+	//
+	public static class Builder{
+		
+	}
 
 }
+
