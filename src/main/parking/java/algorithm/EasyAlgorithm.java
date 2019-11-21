@@ -9,21 +9,34 @@ import parking.VehicleType;
 public class EasyAlgorithm implements ParkingAlgorithm 
 {
 
-	public ParkingSlot searchField(VehicleType vehicle, ArrayList<Floor> floors, int entrance ) 
+	// If it's full, it will begin in the next floor, same position
+	public ParkingSlot searchSlotAvailable(VehicleType vehicleType, ArrayList<Floor> floors, int entrance ) 
 	{
-		Floor floor = null;
 		int counterFloor = 0;
 		int counterSlot = 0;
-		
+		Floor currentFloor = null;
+
+		// Iterate through floors
 		while(counterFloor < floors.size())
 		{
-			counterSlot = 0;
-			
-			while(counterSlot < floors.get(counterSlot).getSlots().size())
+			counterSlot = entrance + 1;
+			currentFloor = floors.get(counterFloor);
+			do
 			{
-			}
+				if(counterSlot <= currentFloor.getParkingSlots().size())
+				{
+					counterSlot = 0;
+				}
+				
+				if(currentFloor.getParkingSlots().get(counterSlot).isSlotAvailable(vehicleType) == true)
+				{
+					return currentFloor.getParkingSlots().get(counterSlot);
+				}
+				
+				++counterSlot;
+			} while( entrance != counterSlot );
 			
-			++counterFloor;
+			counterFloor++;
 		}
 		
 		return null;

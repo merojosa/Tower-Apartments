@@ -25,4 +25,14 @@ public class ParkingSlot
 	{
 		this.occupiedSlot = occupiedState;
 	}
+	
+	public boolean isSlotAvailable(VehicleType vehicleType)
+	{
+		if(isOcuppied() == false && this.vehicleType == vehicleType)
+		{
+			return true;
+		}
+		
+		return false;
+	}
 }

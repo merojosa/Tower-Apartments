@@ -8,5 +8,5 @@ import parking.VehicleType;
 
 public interface ParkingAlgorithm
 {
-	public ParkingSlot searchField(VehicleType vehicle, ArrayList<Floor> floors, int entrance);
+	public ParkingSlot searchSlotAvailable(VehicleType vehicleType, ArrayList<Floor> floors, int entrance);
 }
