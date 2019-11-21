@@ -1,5 +1,5 @@
 package elevators;
 
-public enum userType {
+public enum UserType {
 	NORMAL,PREMIUM, MANTAINANCE
 }
