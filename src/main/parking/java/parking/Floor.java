@@ -34,9 +34,9 @@ public class Floor
 			this.floor = new Floor();
 		}
 		
-		public Builder addSlot(ParkingSlot slot)
+		public Builder addSlot(VehicleType type)
 		{
-			floor.getParkingSlots().add(slot);
+			floor.getParkingSlots().add(new ParkingSlot(type));
 			return this;
 		}
 		
