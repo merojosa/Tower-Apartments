@@ -2,20 +2,47 @@ package parking;
 
 import java.util.ArrayList;
 
-public class Floor 
+public class Floor
 {
-	ArrayList<ParkingSlot> slots;
+	private ArrayList<ParkingSlot> slots;
+	private ArrayList<Integer> entrances;
 	
-	ArrayList<Integer> entradas;
-	
-	public Floor()
+	private Floor()
 	{
-		slots = new ArrayList<ParkingSlot>();
-		entradas.add(0);
+		this.slots = new ArrayList<ParkingSlot>();
+		this.entrances = new ArrayList<Integer>();
 	}
 	
-	public ArrayList<ParkingSlot> getSlots()
+	public ArrayList<ParkingSlot> getParkingSlots()
 	{
-		return slots;
+		return this.slots;
+	}
+	
+	public ArrayList<Integer> getEntrances()
+	{
+		return this.entrances;
+	}
+	
+	//----------------------construcci�n del piso-------------------------
+	
+	public static class Builder
+	{
+		private Floor floor;
+		
+		public Builder()
+		{
+			this.floor = new Floor();
+		}
+		
+		public Builder addSlot(ParkingSlot slot)
+		{
+			floor.getParkingSlots().add(slot);
+			return this;
+		}
+		
+		public Floor build()
+		{
+			return floor;
+		}
 	}
 }

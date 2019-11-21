@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Parking 
 {
-	private ArrayList<ParkingSlot> parkingSlots;
+	private ArrayList<Floor> parkingFloors;
 	
 	private Parking()
 	{
-		this.parkingSlots = new ArrayList<ParkingSlot>();
+		this.parkingFloors = new ArrayList<Floor>();
 	}
 	
-	public ArrayList<ParkingSlot> getParkingSlots()
+	public ArrayList<Floor> getFloors()
 	{
-		return this.parkingSlots;
+		return this.parkingFloors;
 	}
 	
 	/*------------construcción del parqueo----------------------*/
@@ -26,9 +26,19 @@ public class Parking
 			this.parking = new Parking();
 		}
 		
-		public Builder addSlot(ParkingSlot slot)
+		public Builder addFloor(Floor floor)
 		{
-			parking.getParkingSlots().add(slot);
+			parking.getFloors().add(floor);
+			return this;
+		}
+		
+		public Builder addEntrances(ArrayList<Integer> entrances)
+		{
+			for(Floor floor : parking.getFloors())
+			{
+				floor.getEntrances().addAll(entrances);
+			}
+			
 			return this;
 		}
 		
