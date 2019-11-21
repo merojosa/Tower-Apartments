@@ -13,7 +13,17 @@ public abstract class ActionDeviceCommand
 	
 	public abstract void execute();
 	
-	public abstract String getKey();
+	protected abstract String getImplementedKey();
+	
+	protected String getPartialKey()
+	{
+		return getClass().getName() + "_" + device.hashCode();
+	}
+	
+	public String getKey()
+	{
+		return getPartialKey() + "_" + getImplementedKey();
+	}
 	
 	public Device getDevice()
 	{

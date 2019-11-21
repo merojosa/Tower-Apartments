@@ -17,10 +17,9 @@ public class MakeSoundAction extends ActionDeviceCommand {
 	}
 
 	@Override
-	public String getKey() 
+	protected String getImplementedKey() 
 	{
-		// TODO Auto-generated method stub
-		return getClass().getName() + "_" + true;
+		return getPartialKey() + "_" + true;
 	}
 
 }
