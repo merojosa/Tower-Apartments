@@ -40,6 +40,16 @@ public class Floor
 			return this;
 		}
 		
+		public Builder addSlots(int size, VehicleType type)
+		{
+			for(int counter = 0; counter < size; ++counter)
+			{
+				floor.getParkingSlots().add(new ParkingSlot(type));
+			}
+			
+			return this;
+		}
+		
 		public Floor build()
 		{
 			return floor;
