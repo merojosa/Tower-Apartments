@@ -22,18 +22,19 @@ public class EasyAlgorithm implements ParkingAlgorithm
 			counterSlot = entrance + 1;
 			currentFloor = floors.get(counterFloor);
 			do
-			{
-				if(counterSlot <= currentFloor.getParkingSlots().size())
-				{
-					counterSlot = 0;
-				}
-				
+			{				
 				if(currentFloor.getParkingSlots().get(counterSlot).isSlotAvailable(vehicleType) == true)
 				{
 					return currentFloor.getParkingSlots().get(counterSlot);
 				}
 				
 				++counterSlot;
+				
+				if(counterSlot >= currentFloor.getParkingSlots().size())
+				{
+					counterSlot = 0;
+				}
+				
 			} while( entrance != counterSlot );
 			
 			counterFloor++;
