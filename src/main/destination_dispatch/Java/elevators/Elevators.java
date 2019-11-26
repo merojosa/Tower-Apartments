@@ -53,7 +53,10 @@ public class Elevator{
 		}
 	}
 	
-	
+	public int getDistance(UserDirection direction) {
+		int distance = 0; 
+		
+	}
 
 
 }

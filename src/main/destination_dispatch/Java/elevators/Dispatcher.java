@@ -76,4 +76,9 @@ public class Dispatcher {
 		}
 		
 	}
+
+	public List<Elevator> getElevators(){
+		return this.elevators; 
+	}
+	
 }
