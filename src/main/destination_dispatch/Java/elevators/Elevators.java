@@ -15,6 +15,10 @@ public class Elevator{
 		this.destinationFloors = = new ArrayList<Integer>();
 	}
 	
+	public void addDestination(int floor) {
+		this.destinationFloors.add(floor);
+	}
+	
 	public static class Builder{
 		private Elevator elevator;
 		
@@ -48,6 +52,7 @@ public class Elevator{
 			return this.elevator;
 		}
 	}
+	
 	
 
 
