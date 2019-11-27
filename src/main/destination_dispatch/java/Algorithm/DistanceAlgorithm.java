@@ -1,15 +1,22 @@
+package Algorithm;
+import java.util.ArrayList;
+import elevators.*;
 
 public class DistanceAlgorithm implements DispatcherAlgorithm{
 	
-	public int requestElevator(UserDirection user, Usertype type, Dispatcher dispatch) {
+	public int requestElevator(UserDirection user, UserType type, Dispatcher dispatch) {
 		
-		Arraylist<Elevator> elevators = dispatch.getElevators();
-		int elevatorId = 0;
+		ArrayList<Elevator> elevators = dispatch.getElevators();
 		Elevator elevator1 = null; 
+		
+		//Validar si usuario tiene acceso a piso
+		if(type == UserType.NORMAL && dispatch.isFloorOfType(user.getDestinationFloor(), UserType.PREMIUM)) {
+			return -1;
+		}
 		
 		for(Elevator elevator: elevators) { 
 			//Si el elevador es del mismo tipo del usuario 
-			if(elevator.getType() == userType){
+			if(elevator.getType() == type){
 				if(elevator1 == null)
 					elevator1 = elevator; 
 				else {

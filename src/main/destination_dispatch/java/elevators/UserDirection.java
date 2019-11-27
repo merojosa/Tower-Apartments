@@ -25,7 +25,7 @@ public class UserDirection {
 		return this.userDestination;
 	}
 	
-	public int getDirection() {
+	public Direction getDirection() {
 		return this.direction;
 	}
 }

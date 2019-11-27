@@ -8,13 +8,13 @@ public class Elevator{
 	private static int timeStopsInFloor = 10;
 	
 	public int currentFloor; 
-	public Arraylist<Integer> destinationFloors; 
-	public userType type; 
+	public ArrayList<Integer> destinationFloors; 
+	public UserType type; 
 	public int id; 
-	public direction direction; 
+	public Direction direction; 
 	
 	public Elevator(int id) {
-		this.elevator.id = id;
+		this.id = id;
 		this.destinationFloors = new ArrayList<Integer>();
 	}
 	
@@ -25,15 +25,13 @@ public class Elevator{
 	public static class Builder{
 		private Elevator elevator;
 		
-		//Id incrementable
 		public Builder(int id) {
 			this.elevator = new Elevator(id);
-			return this;
 		}
 		
 		public Builder setCurrentFloor(int currentfloor, int dest) {
 			this.elevator.currentFloor = currentfloor;
-			this.elevator.destinationFloor = dest;
+			this.addFloorDestination(dest);
 			return this;
 		}
 		
@@ -42,13 +40,14 @@ public class Elevator{
 			return this; 
 		}
 		
-		public Builder setType(userType type2) {
-			this.elevator.type = type2;
+		public Builder setType(UserType userType) {
+			this.elevator.type = userType;
 			return this;
 		}
 		
 		public Builder setDirection(Direction direction) {
 			this.elevator.direction = direction; 
+			return this;
 		}
 		
 		public Elevator build() {
@@ -63,9 +62,8 @@ public class Elevator{
 	public int getArrivalTime(UserDirection userDirection) {
 		int distance = 0; 
 		int totalTime = 0;
-		//Si el elevador no se mueve
 		if(this.direction == Direction.NOMOVE) {
-			//La distancia sera de el piso actual del elevador menos el piso actual del usuario en valor abs
+			//La distancia sera la del piso actual del elevador menos el piso actual del usuario en valor abs
 			distance = Math.abs((this.currentFloor - userDirection.getCurrentFloor()));
 		}
 		//Si el elevador esta por debajo del usuario
@@ -85,7 +83,6 @@ public class Elevator{
 	public int elevatorBelowUser(UserDirection userDirection) {
 		int distance = 0;
 		
-		//SI el usuario va para arriba
 		if(userDirection.getDirection() == Direction.UP) {
 			
 			//Si el elevador va para arriba
@@ -94,7 +91,8 @@ public class Elevator{
 				return distance;
 			
 			//Si el elevador va para abajo(direccion contraria al usuario)
-			}else {
+			}
+			else {
 				//Piso destino mas bajo
 				int min = this.getMinFloor();	
 				 //distancia del elevador de su piso actual hasta el piso mas abajo + piso mas abajo al piso del usuario
@@ -112,7 +110,7 @@ public class Elevator{
 				return distance; 
 				
 			//SI el elevador va para abajo(direccion contraria al usuario)
-			}else {.
+			}else {
 				
 				//Elemento destino mas abajo
 				int min = this.getMinFloor();	
@@ -123,7 +121,7 @@ public class Elevator{
 	}	
 	
 	public int elevatorAboveUser(UserDirection userDirection) {
-		
+		int distance;
 		if(userDirection.getDirection() == Direction.UP) {
 			
 			//(misma direccion)
@@ -179,7 +177,9 @@ public class Elevator{
 		return min;
 	}
 			
-	
+	public UserType getType() {
+		return this.type;
+	}
 
 
 }
