@@ -2,13 +2,28 @@ package parking;
 
 import java.util.ArrayList;
 
+import algorithm.ParkingAlgorithmStrategy;
+
 public class Parking 
 {
 	private ArrayList<Floor> parkingFloors;
 	
+	private ParkingAlgorithmStrategy strategy;
+	
 	private Parking()
 	{
 		this.parkingFloors = new ArrayList<Floor>();
+	}
+	
+	public void setStrategy(ParkingAlgorithmStrategy strategy)
+	{
+		this.strategy = strategy;
+		this.strategy.setScenario(parkingFloors);
+	}
+	
+	public ParkingSlot searchAvailableSlot(VehicleType vehicleType, int entrance)
+	{
+		return strategy.searchAvailableSlot(vehicleType, entrance);
 	}
 	
 	public ArrayList<Floor> getFloors()
@@ -16,7 +31,7 @@ public class Parking
 		return this.parkingFloors;
 	}
 	
-	/*------------construcción del parqueo----------------------*/
+
 	public static class Builder
 	{
 		private Parking parking;
@@ -39,6 +54,12 @@ public class Parking
 				floor.getEntrances().addAll(entrances);
 			}
 			
+			return this;
+		}
+		
+		public Builder setStrategy(ParkingAlgorithmStrategy strategy)
+		{
+			parking.setStrategy(strategy);
 			return this;
 		}
 		

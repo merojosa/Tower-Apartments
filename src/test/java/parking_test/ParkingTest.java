@@ -1,6 +1,5 @@
 package parking_test;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -8,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import algorithm.EasyAlgorithm;
-import algorithm.ParkingAlgorithm;
+import algorithm.EasyAlgorithmStrategy;
+import algorithm.OtherAlgorithmStrategy;
 import parking.Floor;
 import parking.Parking;
 import parking.ParkingSlot;
@@ -63,26 +62,34 @@ public class ParkingTest
 	@Test
 	public void oneFloorTest() 
 	{
-		ParkingAlgorithm algorithm = new EasyAlgorithm();
-		ParkingSlot slot = algorithm.searchSlotAvailable(VehicleType.SEDAN, parkingOneFloor.getFloors(), 0);
+		parkingOneFloor.setStrategy(new EasyAlgorithmStrategy());
+		ParkingSlot slot = parkingOneFloor.searchAvailableSlot(VehicleType.MOTORCYCLE, 0);
 		Assert.assertNotSame(null, slot);
 	}
 	
 	@Test
 	public void FullParkingTest() 
 	{
-		ParkingAlgorithm algorithm = new EasyAlgorithm();
-		ParkingSlot slot = algorithm.searchSlotAvailable(VehicleType.SEDAN, fullParking.getFloors(), 0);
+		fullParking.setStrategy(new EasyAlgorithmStrategy());
+		ParkingSlot slot = fullParking.searchAvailableSlot(VehicleType.SEDAN, 0);
 		Assert.assertSame(null, slot);
 	}
 	
 	@Test
 	public void twoFloorsTest()
 	{
-		ParkingAlgorithm algorithm = new EasyAlgorithm();
-		
-		ParkingSlot slot = algorithm.searchSlotAvailable(VehicleType.SEDAN, someFloorsParking.getFloors(), 0);
+		someFloorsParking.setStrategy(new EasyAlgorithmStrategy());
+		ParkingSlot slot = someFloorsParking.searchAvailableSlot(VehicleType.SEDAN, 0);
 		Assert.assertNotSame(null, slot);
 	}
+	
+	@Test
+	public void searchWithOtherStrategyTest()
+	{
+		// Pendiente de implementar
+		someFloorsParking.setStrategy(new OtherAlgorithmStrategy());
+		ParkingSlot slot = someFloorsParking.searchAvailableSlot(VehicleType.MOTORCYCLE, 0);
+		//Assert.assertNotSame(null, slot);
 
+	}
 }
