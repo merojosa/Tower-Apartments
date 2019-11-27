@@ -16,9 +16,9 @@ public class MovementDetectedAction extends ActionDeviceCommand
 	}
 
 	@Override
-	public String getKey()
+	protected String getImplementedKey()
 	{
-		return getClass().getName() + "_" + true;
+		return getPartialKey() + "_" + true;
 	}
 
 }

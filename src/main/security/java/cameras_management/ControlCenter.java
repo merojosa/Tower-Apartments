@@ -12,7 +12,7 @@ public class ControlCenter implements Serializable
 	//handler del chain of responsibility
 	private AutoIdentifier identifier;
 	
-	private AccesLog log;
+	private AccessLog log;
 	
 	private static final long serialVersionUID = 1L;
 	private static ControlCenter INSTANCE;
@@ -21,7 +21,7 @@ public class ControlCenter implements Serializable
 	{
 		allCameras = new ArrayList<LeafCamera>();
 		
-		log = new AccesLog();
+		log = new AccessLog();
 		
 		groupedCameras = new ArrayList<ComponentCamera>();
 		

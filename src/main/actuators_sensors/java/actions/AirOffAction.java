@@ -17,9 +17,9 @@ public class AirOffAction extends ActionDeviceCommand {
 	}
 
 	@Override
-	public String getKey() 
+	protected String getImplementedKey() 
 	{
-		return getClass().getName() + "_" + false;
+		return getPartialKey() + "_" + false;
 	}
 
 }

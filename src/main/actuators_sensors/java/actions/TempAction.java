@@ -21,8 +21,8 @@ public class TempAction extends ActionDeviceCommand
 	}
 
 	@Override
-	public String getKey() 
+	protected String getImplementedKey() 
 	{
-		return getClass().getName() + "_" + tempTrigger;
+		return getPartialKey() + "_" + tempTrigger;
 	}
 }

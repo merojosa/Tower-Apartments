@@ -24,6 +24,21 @@ public class DeviceTest
 	DeviceFactory lightsFactory;
 	DeviceFactory airFactory;
 	
+	MediatorApartment mediator;
+	TempSensor tempDevice;
+	TempSensor tempDeviceNoAnswer;
+	AirActuator airDevice;
+	AirActuator airDeviceNoAnswer;
+
+	
+	// When 31, the AC turns on.
+	ActionDeviceCommand tempAction;
+	ActionDeviceCommand tempActionNoAnswer;
+	ActionDeviceCommand airAction;
+	ActionDeviceCommand airActionNoAnswer;
+	
+	Apartment apartment;
+	
 	@Before
 	public void init()
 	{
@@ -31,40 +46,49 @@ public class DeviceTest
 		tempFactory = new TempFactory();
 		lightsFactory = new LightsFactory();
 		airFactory = new AirFactory();
+		
+		mediator = new MediatorApartment();
+		
+		tempDevice = (TempSensor) tempFactory.create(mediator);
+		tempDeviceNoAnswer = (TempSensor) tempFactory.create(mediator);
+		airDevice = (AirActuator) airFactory.create(mediator);
+		airDeviceNoAnswer = (AirActuator) airFactory.create(mediator);
+		
+		tempAction = new TempAction(31, tempDevice);
+		tempActionNoAnswer = new TempAction(31, tempDeviceNoAnswer);
+		airAction = new AirOnAction(airDevice);
+		airActionNoAnswer =  new AirOnAction(airDeviceNoAnswer);
+		
+		apartment = new Apartment.Builder(mediator)
+				.addDevice(tempDevice)
+				.addDevice(tempDeviceNoAnswer)
+				.addDevice(airDevice)
+				.addDevice(airDeviceNoAnswer)
+				.addBehavior(tempAction, airAction)
+				.addBehavior(tempActionNoAnswer, airActionNoAnswer)
+				.build();
 	}
 
 	@Test
 	public void apartmentConstruction()
 	{
-		MediatorApartment mediator = new MediatorApartment();		
-		Apartment apartment = new Apartment.Builder(mediator)
-								.addDevice(tempFactory.create(mediator))
-								.addDevice(airFactory.create(mediator))
+		MediatorApartment mediator_construction = new MediatorApartment();		
+		Apartment apartment_construction = new Apartment.Builder(mediator_construction)
+								.addDevice(tempFactory.create(mediator_construction))
+								.addDevice(airFactory.create(mediator_construction))
 								.build();
 		
-		Assert.assertSame(2, apartment.getDevices().size());
+		Assert.assertSame(2, apartment_construction.getDevices().size());
 	}
 	
 	@Test 
 	public void behaviorApartmentTest()
-	{
-		MediatorApartment mediator = new MediatorApartment();
-		TempSensor temp = (TempSensor) tempFactory.create(mediator);
-		AirActuator air = (AirActuator) airFactory.create(mediator);
+	{		
+		tempDevice.setTemperature(25);
+		Assert.assertFalse(airDevice.getState());
 		
-		// When 31, the AC turns on.
-		ActionDeviceCommand tempAction = new TempAction(31, temp);
-		ActionDeviceCommand airAction = new AirOnAction(air);
-		
-		Apartment apartment = new Apartment.Builder(mediator)
-								.addDevice(temp)
-								.addDevice(air)
-								.addBehavior(tempAction, airAction)
-								.build();
-		
-		temp.setTemperature(25);
-		Assert.assertFalse(air.getState());
-		temp.setTemperature(31);
-		Assert.assertTrue(air.getState());
+		tempDevice.setTemperature(31);
+		Assert.assertFalse(airDeviceNoAnswer.getState());
+		Assert.assertTrue(airDevice.getState());
 	}
 }
