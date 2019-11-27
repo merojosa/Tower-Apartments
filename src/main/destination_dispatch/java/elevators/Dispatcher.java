@@ -9,6 +9,8 @@ public class Dispatcher {
 	private Hashtable<UserType, List<Integer>> floors;
 	private ArrayList<Elevator> elevators;
 	private int totalFloors; 
+	
+	private DispatcherAlgorithmStrategy strategy;
 	//estructura con ascensores
 	
 	public Dispatcher() {
@@ -67,5 +69,16 @@ public class Dispatcher {
 	//para validar
 	public boolean isFloorOfType(int floor,UserType floorType) {
 		return this.floors.get(floorType).contains(floor);
+	}
+
+	
+	public void setStrategy(DispatcherAlgorithmStrategy strategy)
+	{
+		this.strategy = strategy;
+		this.strategy.setScenario(this.elevators);
+	}
+	
+	public int requestElevator(UserDirection user, UserType type) {
+		return this.strategy.requestElevator(user, type);
 	}
 }

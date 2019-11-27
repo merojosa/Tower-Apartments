@@ -15,12 +15,13 @@ import elevators.UserDirection;
 import elevators.UserType;
 
 public class ElevatorTest {
-	DispatcherAlgorithm algorithm;
+	DispatcherAlgorithmStrategy strategy;
 	Dispatcher dispatcher;
+
 	
 	@Before
 	public void init() {
-		algorithm = new DistanceAlgorithm();
+		strategy = new TimeAlgorithmStrategy();
 	}
 	
 	@Test
@@ -61,47 +62,6 @@ public class ElevatorTest {
 	}
 	
 	@Test
-	public void userTypeRequestTestFail() {
-		//Si el usuario normal trata de ir a un piso al que no puede
-		Elevator elevator1 = new Elevator.Builder(1)
-				.setCurrentFloor(3, 3)
-				.setType(UserType.NORMAL)
-				.setDirection(Direction.NOMOVE)
-				.build();
-		
-		Elevator elevator2 = new Elevator.Builder(2)
-				.setCurrentFloor(2, 5)
-				.setType(UserType.PREMIUM)
-				.setDirection(Direction.UP)
-				.build();
-		
-		Elevator elevator3 = new Elevator.Builder(3)
-				.setCurrentFloor(2, 3)
-				.setType(UserType.NORMAL)
-				.addFloorDestination(4)
-				.addFloorDestination(5)
-				.setDirection(Direction.UP).build();
-		
-		dispatcher = new Dispatcher.Builder()
-				.addElevator(elevator1)
-				.addElevator(elevator2)
-				.addElevator(elevator3)
-				.setNumFloor(5)
-				.addFloor(UserType.NORMAL, 1)
-				.addFloor(UserType.NORMAL, 2)
-				.addFloor(UserType.NORMAL, 3)
-				.addFloor(UserType.PREMIUM, 4)
-				.addFloor(UserType.NORMAL, 5)
-				.build();
-		
-		UserDirection userDirection = new UserDirection(1, 4);
-
-		int elevatorID = algorithm.requestElevator(userDirection, UserType.NORMAL, dispatcher);
-		
-		Assert.assertSame(-1, elevatorID);
-	}
-	
-	@Test
 	public void userTypeRequestTest() {
 		
 		Elevator elevator1 = new Elevator.Builder(1)
@@ -121,7 +81,8 @@ public class ElevatorTest {
 				.setType(UserType.NORMAL)
 				.addFloorDestination(4)
 				.addFloorDestination(5)
-				.setDirection(Direction.UP).build();
+				.setDirection(Direction.UP)
+				.build();
 		
 		dispatcher = new Dispatcher.Builder()
 				.addElevator(elevator1)
@@ -136,9 +97,10 @@ public class ElevatorTest {
 				.build();
 		
 		UserDirection userDirection = new UserDirection(1, 5);
+		dispatcher.setStrategy(strategy); 
 
-		int elevatorID = algorithm.requestElevator(userDirection, UserType.NORMAL, dispatcher);
+		int elevatorID = dispatcher.requestElevator(userDirection, UserType.NORMAL);
 				
-		Assert.assertNotEquals(-1, elevatorID);
+		Assert.assertEquals(1, elevatorID);
 	}
 }
