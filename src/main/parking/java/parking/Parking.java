@@ -57,12 +57,6 @@ public class Parking
 			return this;
 		}
 		
-		public Builder setStrategy(ParkingAlgorithmStrategy strategy)
-		{
-			parking.setStrategy(strategy);
-			return this;
-		}
-		
 		public Parking build()
 		{
 			return parking;
