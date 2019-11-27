@@ -106,7 +106,7 @@ public class ControlCenter implements Serializable
 		System.out.println(result);
 	}
 	
-	//estos m�todos son s�lo para hacer tests------------------------
+	//estos metodos son solo para hacer tests------------------------
 	public void addID(int cameraIndex, String ID)
 	{
 		allCameras.get(cameraIndex).getCamera().getProperties().addID(ID);

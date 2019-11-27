@@ -42,21 +42,4 @@ public class CameraIdentifierTest {
 		camaras.add(camera3);
 		camaras.add(camera4);
 	}
-	
-	@Test
-	public void cameraIdentifierTest()
-	{
-		String result = "";
-		String ID = "117560704";
-		String expected = "La camara en MAINROOM identifico al ID: 117560704";
-		
-		for (Camera camara: camaras)
-		{
-			if(identifier.canIdentify(camara, ID))
-			{
-				result = identifier.identify(camara, ID);
-			}
-		}
-		Assert.assertEquals(expected, result);
-	}
 }
