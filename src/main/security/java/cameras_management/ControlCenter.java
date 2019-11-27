@@ -68,16 +68,23 @@ public class ControlCenter implements Serializable
 			
 	}
 	
-	public void addEntranceLog(String ID)
+	public String addEntranceLog(String ID)
 	{
 		String result = log.addEntranceLog(ID);
 		System.out.println(result);
+		return result;
 	}
 	
-	public void addExitLog(String ID)
+	public String addExitLog(String ID)
 	{
 		String result = log.addExitLog(ID);
 		System.out.println(result);
+		return result;
+	}
+	
+	public AccessLog getAccessLog()
+	{
+		return log;
 	}
 	
 	public void addCamera(LeafCamera camera)

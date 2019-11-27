@@ -1,5 +1,7 @@
 package security_test;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,7 +49,16 @@ public class ControlCenterTest
 		controler.addCamera(camera6);
 	}
 	
-	
+	@Test
+	public void accessLogTest()
+	{
+		String result1 = controler.addEntranceLog("117560704");
+		String result2 = controler.addExitLog("117560704");
+		
+		ArrayList<String> testArray = controler.getAccessLog().getLog();
+		Assert.assertSame(result1, testArray.get(0));
+		Assert.assertSame(result2, testArray.get(1));
+	}
 	
 	@Test
 	public void identifierTest() 
