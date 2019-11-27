@@ -13,7 +13,7 @@ public class DistanceAlgorithm implements DispatcherAlgorithm{
 				if(elevator1 == null)
 					elevator1 = elevator; 
 				else {
-					if(elevator1.getDistance() < elevator.getDistance()) {
+					if(elevator1.getArrivalTime(user) > elevator.getArrivalTime(user)) {
 						elevator1 = elevator;
 					}
 				}

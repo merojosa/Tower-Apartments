@@ -1,4 +1,4 @@
-
+package elevators;
 public class UserDirection {
 	public int userDestination;
 	public int userFloor; 
@@ -15,5 +15,17 @@ public class UserDirection {
 		}else {
 			this.direction = Direction.NOMOVE; 
 		}
+	}
+	
+	public int getCurrentFloor() {
+		return this.userFloor;
+	}
+	
+	public int getDestinationFloor() {
+		return this.userDestination;
+	}
+	
+	public int getDirection() {
+		return this.direction;
 	}
 }

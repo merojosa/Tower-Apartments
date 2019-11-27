@@ -1,4 +1,4 @@
-
-public enum direction {
+package elevators;
+public enum Direction {
 		UP, NOMOVE, DOWN; 
 }
