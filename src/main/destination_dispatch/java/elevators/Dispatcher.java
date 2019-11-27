@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import Algorithm.DispatcherAlgorithmStrategy;
+
 public class Dispatcher {
 	
 	private Hashtable<UserType, List<Integer>> floors;

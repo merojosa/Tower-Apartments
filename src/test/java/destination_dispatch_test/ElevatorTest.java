@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import Algorithm.DispatcherAlgorithm;
-import Algorithm.DistanceAlgorithm;
+import Algorithm.DispatcherAlgorithmStrategy;
+import Algorithm.TimeAlgorithmStrategy;
 import elevators.Direction;
 import elevators.Dispatcher;
 import elevators.Elevator;
