@@ -1,13 +1,12 @@
 package destination_dispatch_test;
 
-import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import Algorithm.DispatcherAlgorithmStrategy;
-import Algorithm.TimeAlgorithmStrategy;
+import algorithm.DispatcherAlgorithmStrategy;
+import algorithm.TimeAlgorithmStrategy;
 import elevators.Direction;
 import elevators.Dispatcher;
 import elevators.Elevator;

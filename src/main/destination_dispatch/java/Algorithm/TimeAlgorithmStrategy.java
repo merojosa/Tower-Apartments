@@ -1,8 +1,5 @@
-package Algorithm;
+package algorithm;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-
 import elevators.*;
 
 public class TimeAlgorithmStrategy implements DispatcherAlgorithmStrategy{
