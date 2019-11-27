@@ -6,11 +6,12 @@ import parking.Floor;
 import parking.ParkingSlot;
 import parking.VehicleType;
 
-public class EasyAlgorithm implements ParkingAlgorithm 
+public class EasyAlgorithmStrategy implements ParkingAlgorithmStrategy 
 {
+	private ArrayList<Floor> floors;
 
 	// If it's full, it will begin in the next floor, same position
-	public ParkingSlot searchSlotAvailable(VehicleType vehicleType, ArrayList<Floor> floors, int entrance ) 
+	public ParkingSlot searchAvailableSlot(VehicleType vehicleType, int entrance ) 
 	{
 		int counterFloor = 0;
 		int counterSlot = 0;
@@ -41,6 +42,11 @@ public class EasyAlgorithm implements ParkingAlgorithm
 		}
 		
 		return null;
+	}
+	
+	public void setScenario(ArrayList<Floor> floors) 
+	{
+		this.floors = floors;
 	}
 
 }
