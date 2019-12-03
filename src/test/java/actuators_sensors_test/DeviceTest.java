@@ -6,12 +6,18 @@ import org.junit.Test;
 
 import actions.ActionDeviceCommand;
 import actions.AirOnAction;
+import actions.MakeSoundAction;
+import actions.SmokeDetectedAction;
 import actions.TempAction;
 import construction_devices.AirActuator;
 import construction_devices.AirFactory;
+import construction_devices.AlarmActuator;
+import construction_devices.AlarmFactory;
 import construction_devices.DeviceFactory;
 import construction_devices.LightsFactory;
 import construction_devices.MovementFactory;
+import construction_devices.SmokeFactory;
+import construction_devices.SmokeSensor;
 import construction_devices.TempFactory;
 import construction_devices.TempSensor;
 import management.Apartment;
@@ -23,12 +29,16 @@ public class DeviceTest
 	DeviceFactory tempFactory;
 	DeviceFactory lightsFactory;
 	DeviceFactory airFactory;
+	DeviceFactory smokeFactory;
+	DeviceFactory alarmFactory;
 	
 	MediatorApartment mediator;
 	TempSensor tempDevice;
 	TempSensor tempDeviceNoAnswer;
 	AirActuator airDevice;
 	AirActuator airDeviceNoAnswer;
+	SmokeSensor smokeDevice;
+	AlarmActuator alarmDevice;
 
 	
 	// When 31, the AC turns on.
@@ -36,6 +46,9 @@ public class DeviceTest
 	ActionDeviceCommand tempActionNoAnswer;
 	ActionDeviceCommand airAction;
 	ActionDeviceCommand airActionNoAnswer;
+	ActionDeviceCommand smokeAction;
+	ActionDeviceCommand makeSoundAction;
+	
 	
 	Apartment apartment;
 	
@@ -46,6 +59,8 @@ public class DeviceTest
 		tempFactory = new TempFactory();
 		lightsFactory = new LightsFactory();
 		airFactory = new AirFactory();
+		smokeFactory = new SmokeFactory();
+		alarmFactory = new AlarmFactory();
 		
 		mediator = new MediatorApartment();
 		
@@ -53,19 +68,26 @@ public class DeviceTest
 		tempDeviceNoAnswer = (TempSensor) tempFactory.create(mediator);
 		airDevice = (AirActuator) airFactory.create(mediator);
 		airDeviceNoAnswer = (AirActuator) airFactory.create(mediator);
+		smokeDevice = (SmokeSensor) smokeFactory.create(mediator);
+		alarmDevice = (AlarmActuator) alarmFactory.create(mediator);
 		
 		tempAction = new TempAction(31, tempDevice);
-		tempActionNoAnswer = new TempAction(31, tempDeviceNoAnswer);
+		tempActionNoAnswer = new TempAction(25, tempDeviceNoAnswer);
 		airAction = new AirOnAction(airDevice);
 		airActionNoAnswer =  new AirOnAction(airDeviceNoAnswer);
+		smokeAction = new SmokeDetectedAction(smokeDevice);
+		makeSoundAction = new MakeSoundAction(alarmDevice);
 		
 		apartment = new Apartment.Builder(mediator)
 				.addDevice(tempDevice)
 				.addDevice(tempDeviceNoAnswer)
 				.addDevice(airDevice)
 				.addDevice(airDeviceNoAnswer)
+				.addDevice(smokeDevice)
+				.addDevice(alarmDevice)
 				.addBehavior(tempAction, airAction)
 				.addBehavior(tempActionNoAnswer, airActionNoAnswer)
+				.addBehavior(smokeAction, makeSoundAction)
 				.build();
 	}
 
@@ -82,7 +104,7 @@ public class DeviceTest
 	}
 	
 	@Test 
-	public void behaviorApartmentTest()
+	public void temperatureTest()
 	{		
 		tempDevice.setTemperature(25);
 		Assert.assertFalse(airDevice.getState());
@@ -90,5 +112,13 @@ public class DeviceTest
 		tempDevice.setTemperature(31);
 		Assert.assertFalse(airDeviceNoAnswer.getState());
 		Assert.assertTrue(airDevice.getState());
+	}
+	
+	@Test
+	public void smokeTest()
+	{
+		Assert.assertFalse(alarmDevice.getSound());
+		smokeDevice.detectSmoke();
+		Assert.assertTrue(alarmDevice.getSound());		
 	}
 }
