@@ -41,7 +41,6 @@ public class DeviceTest
 	AlarmActuator alarmDevice;
 
 	
-	// When 31, the AC turns on.
 	ActionDeviceCommand tempAction;
 	ActionDeviceCommand tempActionNoAnswer;
 	ActionDeviceCommand airAction;

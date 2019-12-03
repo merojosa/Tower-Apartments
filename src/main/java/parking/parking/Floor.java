@@ -23,7 +23,12 @@ public class Floor
 		return this.entrances;
 	}
 	
-	//----------------------construcci�n del piso-------------------------
+	public ParkingSlot getSlot(int index)
+	{
+		return slots.get(index);
+	}
+	
+	//----------------------construccion del piso-------------------------
 	
 	public static class Builder
 	{

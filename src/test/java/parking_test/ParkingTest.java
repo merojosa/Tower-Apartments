@@ -28,9 +28,9 @@ public class ParkingTest
 				.addSlots(2, VehicleType.MOTORCYCLE)
 				.build();
 
-		someTypesFloor.getParkingSlots().get(0).setOccupied(true);
-		someTypesFloor.getParkingSlots().get(3).setOccupied(true);
-		someTypesFloor.getParkingSlots().get(5).setOccupied(true);
+		someTypesFloor.getSlot(0).setOccupied(true);
+		someTypesFloor.getSlot(3).setOccupied(true);
+		someTypesFloor.getSlot(5).setOccupied(true);
 
 		ArrayList<Integer> entrances = new ArrayList<Integer>();
 		entrances.add(0);
@@ -44,9 +44,9 @@ public class ParkingTest
 						.addSlots(3, VehicleType.SEDAN)
 						.build();
 		
-		fullFloor.getParkingSlots().get(0).setOccupied(true);
-		fullFloor.getParkingSlots().get(1).setOccupied(true);
-		fullFloor.getParkingSlots().get(2).setOccupied(true);
+		fullFloor.getSlot(0).setOccupied(true);
+		fullFloor.getSlot(1).setOccupied(true);
+		fullFloor.getSlot(2).setOccupied(true);
 		
 		fullParking = new Parking.Builder()
 				.addFloor(fullFloor)
