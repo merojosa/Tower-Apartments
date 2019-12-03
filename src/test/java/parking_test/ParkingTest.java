@@ -86,10 +86,8 @@ public class ParkingTest
 	@Test
 	public void searchWithOtherStrategyTest()
 	{
-		// Pendiente de implementar
 		someFloorsParking.setStrategy(new OtherAlgorithmStrategy());
 		ParkingSlot slot = someFloorsParking.searchAvailableSlot(VehicleType.MOTORCYCLE, 0);
-		//Assert.assertNotSame(null, slot);
-
+		Assert.assertNotSame(null, slot);
 	}
 }

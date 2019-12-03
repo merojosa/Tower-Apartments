@@ -20,11 +20,11 @@ public class EasyAlgorithmStrategy implements ParkingAlgorithmStrategy
 		// Iterate through floors
 		while(counterFloor < floors.size())
 		{
-			counterSlot = entrance + 1;
+			counterSlot = entrance;
 			currentFloor = floors.get(counterFloor);
 			do
 			{				
-				if(currentFloor.getParkingSlots().get(counterSlot).isSlotAvailable(vehicleType) == true)
+				if(currentFloor.getSlot(counterSlot).isSlotAvailable(vehicleType) == true)
 				{
 					return currentFloor.getParkingSlots().get(counterSlot);
 				}
