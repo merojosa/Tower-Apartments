@@ -24,6 +24,21 @@ public class Apartment
 	}
 	
 	
+	public void addBehavior(ActionDeviceCommand action, ActionDeviceCommand answer)
+	{
+		// To add a behavior, both devices involved need to exist in the apartment.
+		if( devices.contains(action.getDevice()) && devices.contains(answer.getDevice()) )
+		{
+			mediator.addBehavior(action, answer);
+		}
+		else
+		{
+			// Testing
+			System.out.println("No se puede configurar el comportamiento porque faltan dispositivos.");
+		}
+	}
+	
+	
 	public static class Builder
 	{
 		private Apartment apartment;
@@ -44,21 +59,6 @@ public class Apartment
 			else
 			{
 				System.out.println("Mediator distinto.");
-			}
-			return this;
-		}
-		
-		public Builder addBehavior(ActionDeviceCommand action, ActionDeviceCommand answer)
-		{
-			// To add a behavior, both devices involved need to exist in the apartment.
-			if( apartment.devices.contains(action.getDevice()) && apartment.devices.contains(answer.getDevice()) )
-			{
-				apartment.mediator.addBehavior(action, answer);
-			}
-			else
-			{
-				// Testing
-				System.out.println("No se puede configurar el comportamiento porque faltan dispositivos.");
 			}
 			return this;
 		}

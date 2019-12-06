@@ -15,7 +15,6 @@ import construction_devices.AlarmActuator;
 import construction_devices.AlarmFactory;
 import construction_devices.DeviceFactory;
 import construction_devices.LightsFactory;
-import construction_devices.MovementFactory;
 import construction_devices.SmokeFactory;
 import construction_devices.SmokeSensor;
 import construction_devices.TempFactory;
@@ -25,7 +24,6 @@ import management.MediatorApartment;
 
 public class DeviceTest 
 {
-	DeviceFactory movementFactory;
 	DeviceFactory tempFactory;
 	DeviceFactory lightsFactory;
 	DeviceFactory airFactory;
@@ -54,7 +52,6 @@ public class DeviceTest
 	@Before
 	public void init()
 	{
-		movementFactory = new MovementFactory();
 		tempFactory = new TempFactory();
 		lightsFactory = new LightsFactory();
 		airFactory = new AirFactory();
@@ -84,10 +81,11 @@ public class DeviceTest
 				.addDevice(airDeviceNoAnswer)
 				.addDevice(smokeDevice)
 				.addDevice(alarmDevice)
-				.addBehavior(tempAction, airAction)
-				.addBehavior(tempActionNoAnswer, airActionNoAnswer)
-				.addBehavior(smokeAction, makeSoundAction)
 				.build();
+		
+		apartment.addBehavior(tempAction, airAction);
+		apartment.addBehavior(tempActionNoAnswer, airActionNoAnswer);
+		apartment.addBehavior(smokeAction, makeSoundAction);
 	}
 
 	@Test
