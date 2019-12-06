@@ -1,11 +1,11 @@
 package actions;
 
-import construction_devices.AlarmActuator;
 import construction_devices.Device;
 
-public class MakeSoundAction extends ActionDeviceCommand {
+public class MakeSoundAction extends ActionDeviceCommand<Boolean>
+{
 
-	public MakeSoundAction(Device alarm)
+	public MakeSoundAction(Device<Boolean> alarm)
 	{
 		super(alarm);
 	}
@@ -13,7 +13,7 @@ public class MakeSoundAction extends ActionDeviceCommand {
 	@Override
 	public void execute() 
 	{
-		((AlarmActuator) device).makeSound();
+		device.setState(true);
 	}
 
 	@Override
@@ -21,5 +21,4 @@ public class MakeSoundAction extends ActionDeviceCommand {
 	{
 		return getPartialKey() + "_" + true;
 	}
-
 }

@@ -1,18 +1,17 @@
 package actions;
 
 import construction_devices.Device;
-import construction_devices.MovementSensor;
 
-public class MovementDetectedAction extends ActionDeviceCommand
+public class MovementDetectedAction extends ActionDeviceCommand<Boolean>
 {
-	public MovementDetectedAction(Device device)
+	public MovementDetectedAction(Device<Boolean> device)
 	{
 		super(device);
 	}
 
 	public void execute() 
 	{
-		((MovementSensor) device).detectMotion();
+		device.setState(true);
 	}
 
 	@Override

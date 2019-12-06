@@ -1,12 +1,11 @@
 package actions;
 
 import construction_devices.Device;
-import construction_devices.LightsActuator;
 
-public class LightsOnAction extends ActionDeviceCommand 
+public class LightsOnAction extends ActionDeviceCommand<Boolean>
 {
 
-	public LightsOnAction(Device lights)
+	public LightsOnAction(Device<Boolean> lights)
 	{
 		super(lights);
 	}
@@ -14,7 +13,7 @@ public class LightsOnAction extends ActionDeviceCommand
 	@Override
 	public void execute()
 	{
-		((LightsActuator) device).turnOn();
+		device.setState(true);
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import actions.LightsOffAction;
 import actions.LightsOnAction;
 import management.MediatorApartment;
 
-public class LightsActuator extends Device
+public class LightsActuator extends Device<Boolean>
 {
 	private boolean state;
 
@@ -14,24 +14,23 @@ public class LightsActuator extends Device
 		super(mediator);
 	}
 	
-	
-	public void turnOff()
+	@Override
+	public void setState(Boolean state) 
 	{
-		state = false;
-		mediator.notifyAction(new LightsOffAction(this));
+		this.state = state;
+		
+		if(state == true)
+		{
+			mediator.notifyAction(new LightsOnAction(this));
+		}
+		else
+		{
+			mediator.notifyAction(new LightsOffAction(this));
+		}
 	}
 	
-	
-	public void turnOn()
-	{
-		state = true;
-		mediator.notifyAction(new LightsOnAction(this));
-	}
-	
-	
-	public boolean getState()
+	public Boolean getState()
 	{
 		return state;
 	}
-
 }

@@ -3,7 +3,7 @@ package construction_devices;
 import actions.SmokeDetectedAction;
 import management.MediatorApartment;
 
-public class SmokeSensor extends Device 
+public class SmokeSensor extends Device<Boolean>
 {	
 	private boolean detection;
 
@@ -13,17 +13,22 @@ public class SmokeSensor extends Device
 		super(mediator);
 		detection = false;
 	}
-	
 
-	public boolean getDetection() 
+	@Override
+	public void setState(Boolean state) 
 	{
-		return detection;
+		detection = state;
+		
+		if(state == true)
+		{
+			mediator.notifyAction(new SmokeDetectedAction(this));
+		}
 	}
 
-	
-	public void detectSmoke()
+
+	@Override
+	public Boolean getState() 
 	{
-		detection = true;
-		mediator.notifyAction(new SmokeDetectedAction(this));
+		return detection;
 	}
 }

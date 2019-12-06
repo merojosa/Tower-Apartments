@@ -1,12 +1,11 @@
 package actions;
 
 import construction_devices.Device;
-import construction_devices.SmokeSensor;
 
-public class SmokeDetectedAction extends ActionDeviceCommand
+public class SmokeDetectedAction extends ActionDeviceCommand<Boolean>
 {
 
-	public SmokeDetectedAction(Device device) 
+	public SmokeDetectedAction(Device<Boolean> device) 
 	{
 		super(device);
 	}
@@ -14,7 +13,7 @@ public class SmokeDetectedAction extends ActionDeviceCommand
 	@Override
 	public void execute() 
 	{
-		((SmokeSensor) device).detectSmoke();
+		device.setState(true);
 	}
 
 	@Override

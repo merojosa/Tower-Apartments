@@ -1,11 +1,10 @@
 package actions;
 
-import construction_devices.AirActuator;
 import construction_devices.Device;
 
-public class AirOnAction extends ActionDeviceCommand 
+public class AirOnAction extends ActionDeviceCommand<Boolean> 
 {	
-	public AirOnAction(Device air)
+	public AirOnAction(Device<Boolean> air)
 	{
 		super(air);
 	}
@@ -13,7 +12,7 @@ public class AirOnAction extends ActionDeviceCommand
 	@Override
 	public void execute() 
 	{
-		((AirActuator) device).turnOn();
+		device.setState(true);
 	}
 
 	@Override

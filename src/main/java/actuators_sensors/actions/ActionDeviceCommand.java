@@ -2,11 +2,11 @@ package actions;
 
 import construction_devices.Device;
 
-public abstract class ActionDeviceCommand
+public abstract class ActionDeviceCommand<StateType>
 {		
-	protected Device device;
+	protected Device<StateType> device;
 	
-	public ActionDeviceCommand(Device device)
+	public ActionDeviceCommand(Device<StateType> device)
 	{
 		this.device = device;
 	}
@@ -25,7 +25,7 @@ public abstract class ActionDeviceCommand
 		return getPartialKey() + "_" + getImplementedKey();
 	}
 	
-	public Device getDevice()
+	public Device<StateType> getDevice()
 	{
 		return device;
 	}

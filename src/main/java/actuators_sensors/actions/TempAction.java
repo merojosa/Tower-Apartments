@@ -1,14 +1,13 @@
 package actions;
 
 import construction_devices.Device;
-import construction_devices.TempSensor;
 
-public class TempAction extends ActionDeviceCommand
+public class TempAction extends ActionDeviceCommand<Integer>
 {
 	private int tempTrigger;
 	
 	
-	public TempAction(int tempTrigger, Device tempSensor)
+	public TempAction(int tempTrigger, Device<Integer> tempSensor)
 	{
 		super(tempSensor);
 		this.tempTrigger = tempTrigger;
@@ -17,7 +16,7 @@ public class TempAction extends ActionDeviceCommand
 	@Override
 	public void execute()
 	{
-		((TempSensor) device).setTemperature(tempTrigger);
+		device.setState(tempTrigger);
 	}
 
 	@Override

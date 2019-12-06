@@ -1,12 +1,11 @@
 package actions;
 
-import construction_devices.AlarmActuator;
 import construction_devices.Device;
 
-public class StopSoundAction extends ActionDeviceCommand
+public class StopSoundAction extends ActionDeviceCommand<Boolean>
 {
 
-	public StopSoundAction(Device alarm) 
+	public StopSoundAction(Device<Boolean> alarm) 
 	{
 		super(alarm);
 	}
@@ -14,7 +13,7 @@ public class StopSoundAction extends ActionDeviceCommand
 	@Override
 	public void execute() 
 	{
-		((AlarmActuator) device).stopSound();		
+		device.setState(false);
 	}
 
 	@Override
@@ -22,5 +21,4 @@ public class StopSoundAction extends ActionDeviceCommand
 	{
 		return getPartialKey() + "_" + true;
 	}
-
 }

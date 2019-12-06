@@ -9,42 +9,39 @@ import actions.AirOnAction;
 import actions.MakeSoundAction;
 import actions.SmokeDetectedAction;
 import actions.TempAction;
-import construction_devices.AirActuator;
 import construction_devices.AirFactory;
-import construction_devices.AlarmActuator;
 import construction_devices.AlarmFactory;
+import construction_devices.Device;
 import construction_devices.DeviceFactory;
 import construction_devices.LightsFactory;
 import construction_devices.SmokeFactory;
-import construction_devices.SmokeSensor;
 import construction_devices.TempFactory;
-import construction_devices.TempSensor;
 import management.Apartment;
 import management.MediatorApartment;
 
 public class DeviceTest 
 {
-	DeviceFactory tempFactory;
-	DeviceFactory lightsFactory;
-	DeviceFactory airFactory;
-	DeviceFactory smokeFactory;
-	DeviceFactory alarmFactory;
+	DeviceFactory<Integer> tempFactory;
+	DeviceFactory<Boolean> lightsFactory;
+	DeviceFactory<Boolean> airFactory;
+	DeviceFactory<Boolean> smokeFactory;
+	DeviceFactory<Boolean> alarmFactory;
 	
 	MediatorApartment mediator;
-	TempSensor tempDevice;
-	TempSensor tempDeviceNoAnswer;
-	AirActuator airDevice;
-	AirActuator airDeviceNoAnswer;
-	SmokeSensor smokeDevice;
-	AlarmActuator alarmDevice;
+	Device<Integer> tempDevice;
+	Device<Integer> tempDeviceNoAnswer;
+	Device<Boolean> airDevice;
+	Device<Boolean> airDeviceNoAnswer;
+	Device<Boolean> smokeDevice;
+	Device<Boolean> alarmDevice;
 
 	
-	ActionDeviceCommand tempAction;
-	ActionDeviceCommand tempActionNoAnswer;
-	ActionDeviceCommand airAction;
-	ActionDeviceCommand airActionNoAnswer;
-	ActionDeviceCommand smokeAction;
-	ActionDeviceCommand makeSoundAction;
+	ActionDeviceCommand<Integer> tempAction;
+	ActionDeviceCommand<Integer> tempActionNoAnswer;
+	ActionDeviceCommand<Boolean> airAction;
+	ActionDeviceCommand<Boolean> airActionNoAnswer;
+	ActionDeviceCommand<Boolean> smokeAction;
+	ActionDeviceCommand<Boolean> makeSoundAction;
 	
 	
 	Apartment apartment;
@@ -60,12 +57,12 @@ public class DeviceTest
 		
 		mediator = new MediatorApartment();
 		
-		tempDevice = (TempSensor) tempFactory.create(mediator);
-		tempDeviceNoAnswer = (TempSensor) tempFactory.create(mediator);
-		airDevice = (AirActuator) airFactory.create(mediator);
-		airDeviceNoAnswer = (AirActuator) airFactory.create(mediator);
-		smokeDevice = (SmokeSensor) smokeFactory.create(mediator);
-		alarmDevice = (AlarmActuator) alarmFactory.create(mediator);
+		tempDevice = tempFactory.create(mediator);
+		tempDeviceNoAnswer = tempFactory.create(mediator);
+		airDevice = airFactory.create(mediator);
+		airDeviceNoAnswer = airFactory.create(mediator);
+		smokeDevice = smokeFactory.create(mediator);
+		alarmDevice = alarmFactory.create(mediator);
 		
 		tempAction = new TempAction(31, tempDevice);
 		tempActionNoAnswer = new TempAction(25, tempDeviceNoAnswer);
@@ -103,10 +100,10 @@ public class DeviceTest
 	@Test 
 	public void temperatureTest()
 	{		
-		tempDevice.setTemperature(25);
+		tempDevice.setState(25);
 		Assert.assertFalse(airDevice.getState());
 		
-		tempDevice.setTemperature(31);
+		tempDevice.setState(31);
 		Assert.assertFalse(airDeviceNoAnswer.getState());
 		Assert.assertTrue(airDevice.getState());
 	}
@@ -114,8 +111,8 @@ public class DeviceTest
 	@Test
 	public void smokeTest()
 	{
-		Assert.assertFalse(alarmDevice.getSound());
-		smokeDevice.detectSmoke();
-		Assert.assertTrue(alarmDevice.getSound());		
+		Assert.assertFalse(alarmDevice.getState());
+		smokeDevice.setState(true);
+		Assert.assertTrue(alarmDevice.getState());		
 	}
 }

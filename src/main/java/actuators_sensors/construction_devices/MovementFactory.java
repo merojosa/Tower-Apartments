@@ -2,11 +2,11 @@ package construction_devices;
 
 import management.MediatorApartment;
 
-public class MovementFactory extends DeviceFactory
+public class MovementFactory extends DeviceFactory<Boolean>
 {
 
 	@Override
-	protected Device createDevice(MediatorApartment mediator) 
+	protected Device<Boolean> createDevice(MediatorApartment mediator) 
 	{
 		return new MovementSensor(mediator);
 	}

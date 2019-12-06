@@ -2,7 +2,7 @@ package construction_devices;
 
 import management.MediatorApartment;
 
-public abstract class Device 
+public abstract class Device<StateType>
 {
 	protected MediatorApartment mediator;
 	
@@ -15,4 +15,7 @@ public abstract class Device
 	{
 		return mediator;
 	}
+	
+	public abstract void setState(StateType state);
+	public abstract StateType getState();
 }

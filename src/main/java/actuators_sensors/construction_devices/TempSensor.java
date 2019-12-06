@@ -4,7 +4,7 @@ package construction_devices;
 import actions.TempAction;
 import management.MediatorApartment;
 
-public class TempSensor extends Device 
+public class TempSensor extends Device<Integer>
 {
 	private int temperature;
 
@@ -14,16 +14,18 @@ public class TempSensor extends Device
 		super(mediator);
 	}
 
+	
+	@Override
+	public void setState(Integer state) 
+	{
+		temperature = state;
+		mediator.notifyAction(new TempAction(state, this));		
+	}
 
-	public int getTemperature()
+	
+	@Override
+	public Integer getState() 
 	{
 		return temperature;
-	}
-	
-	
-	public void setTemperature(int temperature)
-	{
-		this.temperature = temperature;
-		mediator.notifyAction(new TempAction(temperature, this));
 	}
 }
