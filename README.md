@@ -15,10 +15,10 @@ El proyecto está hecho en Java usando Maven.
 
 ## Enunciado del proyecto
 
-<img src="/media/CI0136-Proyecto_page-0001.jpg" alt="Diseño" title="Diseño administrador de memoria" width="1000" />
+<img src="/media/CI0136-Proyecto_page-0001.jpg" alt="Diseño" width="1000" />
 
-<img src="/media/CI0136-Proyecto_page-0002.jpg" alt="Diseño" title="Diseño administrador de memoria" width="1000" />
+<img src="/media/CI0136-Proyecto_page-0002.jpg" alt="Diseño" width="1000" />
 
-<img src="/media/CI0136-Proyecto_page-0003.jpg" alt="Diseño" title="Diseño administrador de memoria" width="1000" />
+<img src="/media/CI0136-Proyecto_page-0003.jpg" alt="Diseño" width="1000" />
 
-<img src="/media/CI0136-Proyecto_page-0004.jpg" alt="Diseño" title="Diseño administrador de memoria" width="1000" />
+<img src="/media/CI0136-Proyecto_page-0004.jpg" alt="Diseño" width="1000" />
